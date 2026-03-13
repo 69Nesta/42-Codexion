@@ -66,7 +66,7 @@ DEPS      = $(M_FILE:%.c=$(OBJ_DIR)%.d)
 
 # NORMINETTE (use same paths as norm target)
 # NORM_RET = $(RED)[ERROR]$(BOLD) Norminette Disable$(NC)
-NORM   = $(shell norminette src/ libft/ includes/ | grep -c 'Error!')
+NORM   = $(shell norminette src/ includes/ | grep -c 'Error!')
 ifeq ($(NORM), 0)
   NORM_RET = $(GREEN)[DONE] $(BOLD)$(YELLOW)Norminette.$(NC)
 else
@@ -87,19 +87,7 @@ $(OBJ_DIR)%.o : %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
 	@printf "\n$(GREEN)[Compiling] $(NC)$(shell echo $< | sed 's|^src/||')";
 
-# New pattern rule for bonus object files (compile checker sources with BONUS_CFLAGS)
-$(OBJ_BONUS_DIR)%.o : %.c
-	@if [ $(COMPILED_FILES) -eq 0 ]; then \
-		echo "\n$(YELLOW)╔══════════════════════════════════════════════╗$(NC)";                          \
-		echo "$(YELLOW)║         Starting $(YELLOW2)checker$(YELLOW) compilation...       ║$(NC)";       \
-		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)";                        \
-	fi
-	@$(eval COMPILED_FILES := 1)
-	@mkdir -p $(dir $@)
-	@$(CC) $(BONUS_CFLAGS) -o $@ -c $< $(INCLUDES)
-	@printf "\n$(GREEN)[Compiling] $(NC)$(shell echo $< | sed 's|^src/||')";
-
-all : make_libft $(NAME) nothing_to_be_done
+all: $(NAME) nothing_to_be_done
 
 nothing_to_be_done:
 	@if [ $(COMPILED_FILES) -eq 0 ]; then \
@@ -108,7 +96,7 @@ nothing_to_be_done:
 		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)\n";                          \
 	fi
 
-$(NAME) : $(LIBFT) $(OBJ)
+$(NAME) : $(OBJ)
 	@if [ $(COMPILED_FILES) -eq 0 ]; then \
 		echo "\n$(YELLOW)╔══════════════════════════════════════════════╗$(NC)";                          \
 		echo "$(YELLOW)║       Starting $(YELLOW2)$(NAME)$(YELLOW) compilation...       ║$(NC)";           \
@@ -116,67 +104,27 @@ $(NAME) : $(LIBFT) $(OBJ)
 	fi
 	@$(eval COMPILED_FILES := 1)
 	@echo "\n\n$(GREEN)[Compiling program] $(NC)$(NAME)"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
-# 	@make --no-print-directory end_message
-
-# New rule to build checker executable
-checker: $(LIBFT) $(CHECKER_OBJ)
-	@if [ $(COMPILED_FILES) -eq 0 ]; then \
-		echo "\n$(YELLOW)╔══════════════════════════════════════════════╗$(NC)";                          \
-		echo "$(YELLOW)║         Starting $(YELLOW2)checker$(YELLOW) compilation...       ║$(NC)";       \
-		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)";                        \
-	fi
-	@$(eval COMPILED_FILES := 1)
-	@echo "\n\n$(GREEN)[Compiling program] $(NC)checker"
-	@$(CC) $(BONUS_CFLAGS) -o checker $(CHECKER_OBJ) $(LIBFT)
-
-# bonus target builds the checker
-bonus: checker
-
-make_libft:
-	@make --no-print-directory -C $(LIBFTDIR) all
-
-$(LIBFT): make_libft
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 clean :
-	@echo "$(RED)[Removing] $(NC)libft object files"
-	@make --no-print-directory -C $(LIBFTDIR) clean
 	@echo "$(RED)[Removing] $(NC)object files"
 	@rm -rf $(OBJ_DIR)
 
 fclean : clean
-	@make --no-print-directory -C $(LIBFTDIR) fclean
-	@if [ -f $(NAME) ]; then \
-		echo "$(RED)[Removing] $(NC)program $(NAME)"; \
-		rm -f $(NAME); \
-	fi
-	@if [ -f checker ]; then \
-		echo "$(RED)[Removing] $(NC)program checker"; \
-		rm -f checker; \
-	fi
-	@if [ -f checker ]; then \
-		echo "$(RED)[Removing] $(NC)program checker"; \
-		rm -f checker; \
-	fi
-
-fcleanp :
-	@echo "$(RED)[Removing] $(NC)object files"
-	@rm -rf $(OBJ_DIR)
 	@if [ -f $(NAME) ]; then \
 		echo "$(RED)[Removing] $(NC)program $(NAME)"; \
 		rm -f $(NAME); \
 	fi
 
-re : fclean
-	@make --no-print-directory all
+re: fclean all
 
-debug: all 
+debug: all
 
 norm:
-	@norminette src/ libft/ includes/
+	@norminette src/
 
 bonus:
 
-.PHONY: all clean fclean re make_libft nothing_to_be_done norminette debug bonus checker
+.PHONY: all clean fclean re nothing_to_be_done norminette debug
 
--include $(DEPS) $(CHECKER_DEPS)
+-include $(DEPS)
