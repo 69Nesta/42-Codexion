@@ -24,7 +24,7 @@ ERASE2   = $(ERASE)\033[F$(ERASE)
 CC       = cc
 
 DEPFLAGS = -MMD -MP
-CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror
+CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror -pthread -std=c89
 DEBUG_FLAGS = -g3
 
 BONUS_CFLAGS := $(CFLAGS) -DPRINT_OPERATION=0
@@ -43,17 +43,28 @@ CODEXION_DIR             = src/
 # Mandatory sources (in src/)
 CODEXION_MANDATORY			= codexion.c
 
+# Coders (in src/coder/)
+CODEXION_CODER_DIR			= src/coder/
+CODEXION_CODER				= create_coder.c \
+							free_coder.c
 
 # Utils sources (in src/utils/)
 CODEXION_UTILS_DIR			= src/utils/
-CODEXION_UTILS				= 
+CODEXION_UTILS				= time.c \
+							logger.c \
+							parse_int.c
+
+# Parsing Args (in src/args/)
+CODEXION_ARGS_DIR			= src/args/
+CODEXION_ARGS				= parse_args.c \
+							check_args.c
 
 
 # Build full paths for all sources
 CODEXION_FILE	= $(addprefix $(CODEXION_DIR), $(CODEXION_MANDATORY)) \
 					$(addprefix $(CODEXION_UTILS_DIR), $(CODEXION_UTILS)) \
-					$(addprefix $(CODEXION_OPERATIONS_DIR), $(CODEXION_OPERATIONS)) \
-					$(addprefix $(CODEXION_STRATEGIES_DIR), $(CODEXION_STRATEGIES))
+					$(addprefix $(CODEXION_ARGS_DIR), $(CODEXION_ARGS)) \
+					$(addprefix $(CODEXION_CODER_DIR), $(CODEXION_CODER))
 
 
 M_FILE  = $(CODEXION_FILE)
@@ -123,8 +134,6 @@ debug: all
 norm:
 	@norminette src/
 
-bonus:
-
-.PHONY: all clean fclean re nothing_to_be_done norminette debug
+.PHONY: all clean fclean re nothing_to_be_done norm debug
 
 -include $(DEPS)

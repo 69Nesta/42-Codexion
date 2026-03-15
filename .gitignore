@@ -3,3 +3,4 @@ codexion
 
 # Object files
 .obj
+*.out
