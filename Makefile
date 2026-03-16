@@ -45,8 +45,13 @@ CODEXION_MANDATORY			= codexion.c
 
 # Coders (in src/coder/)
 CODEXION_CODER_DIR			= src/coder/
-CODEXION_CODER				= create_coder.c \
-							free_coder.c
+CODEXION_CODER				= create_coders.c \
+							free_coders.c
+
+# Dongles (in src/dongle/)
+CODEXION_DONGLE_DIR			= src/dongle/
+CODEXION_DONGLE				= create_dongles.c \
+							free_dongles.c
 
 # Utils sources (in src/utils/)
 CODEXION_UTILS_DIR			= src/utils/
@@ -64,7 +69,8 @@ CODEXION_ARGS				= parse_args.c \
 CODEXION_FILE	= $(addprefix $(CODEXION_DIR), $(CODEXION_MANDATORY)) \
 					$(addprefix $(CODEXION_UTILS_DIR), $(CODEXION_UTILS)) \
 					$(addprefix $(CODEXION_ARGS_DIR), $(CODEXION_ARGS)) \
-					$(addprefix $(CODEXION_CODER_DIR), $(CODEXION_CODER))
+					$(addprefix $(CODEXION_CODER_DIR), $(CODEXION_CODER)) \
+					$(addprefix $(CODEXION_DONGLE_DIR), $(CODEXION_DONGLE))
 
 
 M_FILE  = $(CODEXION_FILE)

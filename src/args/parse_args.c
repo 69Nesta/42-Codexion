@@ -27,6 +27,8 @@ int		ft_fill_settings(t_codexion *settings, int argc, char **argv)
 		settings->scheduler = FIFO;
 	else if (strcmp(argv[8], "edf") == 0)
 		settings->scheduler = EDF;
+	else
+		settings->scheduler = -1;
 	return (0);
 }
 

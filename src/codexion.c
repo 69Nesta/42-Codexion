@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	printf("Time to refactor: %d\n", codexion.time_to_refactor);
 	printf("Number of compiles required: %d\n", codexion.number_of_compiles_required);
 	printf("Dongle cooldown: %d\n", codexion.dongle_cooldown);
-	printf("Scheduler algorithm: %d\n", codexion.scheduler);
+	printf("Scheduler algorithm: %d\n\n-----------\n\n", codexion.scheduler);
 
 	/*
 	Initialize coders and dongles here
