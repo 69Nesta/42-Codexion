@@ -24,7 +24,7 @@ ERASE2   = $(ERASE)\033[F$(ERASE)
 CC       = cc
 
 DEPFLAGS = -MMD -MP
-CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror -pthread -std=c89
+CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror -pthread
 DEBUG_FLAGS = -g3
 
 BONUS_CFLAGS := $(CFLAGS) -DPRINT_OPERATION=0

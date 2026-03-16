@@ -36,10 +36,10 @@ int		ft_check_settings(t_codexion *settings)
 {
 	int args_checker[] = {
 		settings->number_of_coders <= 0, settings->time_to_burnout <= 0,
-		settings->time_to_compile < 0, settings->time_to_debug < 0,
-		settings->time_to_refactor < 0,
+		settings->time_to_compile <= 0, settings->time_to_debug <= 0,
+		settings->time_to_refactor <= 0,
 		settings->number_of_compiles_required <= 0,
-		settings->dongle_cooldown < 0,
+		settings->dongle_cooldown <= 0,
 		settings->scheduler != FIFO && settings->scheduler != EDF,
 		-1
 	};

@@ -4,15 +4,28 @@
 #include "codexion.h"
 #include "args.h"
 #include "time.h"
-#include "utils.h"
-#include "coder.h"
+#include "logger.h"
+
+
+int	run_all_coders(t_codexion *codexion)
+{
+	int	index;
+
+	index = 0;
+	while (index < codexion->number_of_coders)
+	{
+		pthread_join(codexion->coders[index].thread, NULL);
+		index++;
+	}
+
+	return (0);
+}
 
 
 int main(int argc, char **argv)
 {
 	t_codexion	codexion;
 
-	start_timestamp();
 	if (ft_check_args(&codexion, argc, argv))
 		return (1);
 
@@ -25,11 +38,16 @@ int main(int argc, char **argv)
 	printf("Dongle cooldown: %d\n", codexion.dongle_cooldown);
 	printf("Scheduler algorithm: %d\n\n-----------\n\n", codexion.scheduler);
 
-	/*
-	Initialize coders and dongles here
-	*/
+	create_coders(&codexion);
+	create_dongles(&codexion);
 
-	log_action(0, TAKE_DONGLE_ACTION);
+
+	start_timestamp();
+	create_threads(&codexion);
+	run_all_coders(&codexion);
+
+	free_dongles(&codexion);
+	free_coders(&codexion);
 
 	return (0);
 }

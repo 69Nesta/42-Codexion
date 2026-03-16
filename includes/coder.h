@@ -2,6 +2,7 @@
 # define CODER_H
 
 # include <pthread.h>
+# include "dongle.h"
 
 typedef enum e_coder_state
 {
@@ -21,16 +22,5 @@ typedef enum e_action
 	REFACTOR_ACTION,
 	BURNOUT_ACTION
 }	t_action;
-
-
-typedef struct s_coder
-{
-	int				id;
-	t_coder_state	state;
-	int				compiles_done;
-	int				last_compile_time;
-	pthread_t		thread;
-
-}	t_coder;
 
 #endif
