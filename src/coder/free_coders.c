@@ -3,13 +3,13 @@
 #include "codexion.h"
 #include "coder.h"
 
-int	free_coders(t_codexion *codexion)
+int	free_coders(t_sim *sim)
 {
-	if (!codexion->coders)
-		return (1);
+	if (!sim->coders)
+		return (0);
 	
-	free(codexion->coders);
+	free(sim->coders);
 
-	codexion->coders = NULL;
+	sim->coders = NULL;
 	return (0);
 }

@@ -29,9 +29,9 @@ DEBUG_FLAGS = -g3
 
 BONUS_CFLAGS := $(CFLAGS) -DPRINT_OPERATION=0
 
-ifeq ($(MAKECMDGOALS), debug)
-	CFLAGS += $(DEBUG_FLAGS)
-endif
+# ifeq ($(MAKECMDGOALS), debug)
+CFLAGS += $(DEBUG_FLAGS)
+# endif
 
 
 # Includes
@@ -46,12 +46,25 @@ CODEXION_MANDATORY			= codexion.c
 # Coders (in src/coder/)
 CODEXION_CODER_DIR			= src/coder/
 CODEXION_CODER				= create_coders.c \
-							free_coders.c
+							free_coders.c \
+							create_coders_queue.c \
+							free_coders_queue.c \
+							create_coders_thread.c \
+							join_coders_thread.c \
+							coder_routine.c
 
 # Dongles (in src/dongle/)
 CODEXION_DONGLE_DIR			= src/dongle/
 CODEXION_DONGLE				= create_dongles.c \
 							free_dongles.c
+
+# Simulation (in src/simulation/)
+CODEXION_SIMULATION_DIR		= src/simulation/
+CODEXION_SIMULATION			= set_sim_state.c \
+							init_simulation.c \
+							run_simulation.c \
+							cleanup_simulation.c \
+
 
 # Utils sources (in src/utils/)
 CODEXION_UTILS_DIR			= src/utils/
@@ -70,7 +83,8 @@ CODEXION_FILE	= $(addprefix $(CODEXION_DIR), $(CODEXION_MANDATORY)) \
 					$(addprefix $(CODEXION_UTILS_DIR), $(CODEXION_UTILS)) \
 					$(addprefix $(CODEXION_ARGS_DIR), $(CODEXION_ARGS)) \
 					$(addprefix $(CODEXION_CODER_DIR), $(CODEXION_CODER)) \
-					$(addprefix $(CODEXION_DONGLE_DIR), $(CODEXION_DONGLE))
+					$(addprefix $(CODEXION_DONGLE_DIR), $(CODEXION_DONGLE)) \
+					$(addprefix $(CODEXION_SIMULATION_DIR), $(CODEXION_SIMULATION))
 
 
 M_FILE  = $(CODEXION_FILE)

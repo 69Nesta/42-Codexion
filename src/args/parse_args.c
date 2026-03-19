@@ -3,7 +3,7 @@
 #include "codexion.h"
 #include "utils.h"
 
-int		ft_fill_settings(t_codexion *settings, int argc, char **argv)
+int		ft_fill_settings(t_sim *settings, int argc, char **argv)
 {
 	int	*to_fill_int[] = {
 		&settings->number_of_coders, &settings->time_to_burnout,
@@ -32,7 +32,7 @@ int		ft_fill_settings(t_codexion *settings, int argc, char **argv)
 	return (0);
 }
 
-int		ft_check_settings(t_codexion *settings)
+int		ft_check_settings(t_sim *settings)
 {
 	int args_checker[] = {
 		settings->number_of_coders <= 0, settings->time_to_burnout <= 0,

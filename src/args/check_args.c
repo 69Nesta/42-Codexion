@@ -3,7 +3,7 @@
 #include "codexion.h"
 #include "colors.h"
 #include "args.h"
-#include "utils.h"
+#include "logger.h"
 
 
 int ft_check_missing(int argc)
@@ -34,7 +34,7 @@ int ft_check_missing(int argc)
 	return (1);
 }
 
-int ft_check_fill(t_codexion *settings, int argc, char **argv)
+int ft_check_fill(t_sim *settings, int argc, char **argv)
 {
 	const int	error = ft_fill_settings(settings, argc, argv);
 	const char	*args[] = {
@@ -62,7 +62,7 @@ int ft_check_fill(t_codexion *settings, int argc, char **argv)
 	return (1);
 }
 
-int check_content(t_codexion *settings)
+int check_content(t_sim *settings)
 {
 	const int	check = ft_check_settings(settings);
 	const char	*args[] = {
@@ -86,7 +86,7 @@ int check_content(t_codexion *settings)
 	return (0);
 }
 
-int ft_check_args(t_codexion *settings, int argc, char **argv)
+int ft_check_args(t_sim *settings, int argc, char **argv)
 {
 	if (ft_check_missing(argc))
 		return (1);

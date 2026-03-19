@@ -7,76 +7,27 @@
 #include "logger.h"
 
 
-/*
-steps for corders:
-- finds 2 dongles (locks them)
-- compiles (sleeps for time_to_compile)
-- increments compile count
-- releases dongles (unlocks them)
-- debugs (sleeps for time_to_debug)
-- refactors (sleeps for time_to_refactor)
-*/
-
-void *coder_logic(void *v_coder)
-{
-	t_coder		*coder = (t_coder *)v_coder;
-	// t_codexion	*codexion = coder->codexion;
-	
-	// printf("From thead coder: %d\n", coder->id);
-
-	log_action(coder->id, TAKE_DONGLE_ACTION);
-	log_action(coder->id, TAKE_DONGLE_ACTION);
-	log_action(coder->id, COMPILE_ACTION);
-
-	usleep(100000);
-
-	log_action(coder->id, REFACTOR_ACTION);
-
-	// while (coder->compiles_done < )
-
-	return (0);
-}
-
-
-int	create_coders(t_codexion *codexion)
+int	create_coders(t_sim *sim)
 {
 	int			index;
 
-	codexion->coders = malloc(sizeof(t_coder) * codexion->number_of_coders);
-	if (!codexion->coders)
-		return (1);
+	sim->coders = malloc(sizeof(t_coder) * sim->number_of_coders);
+	if (!sim->coders)
+		return (0);
 
 	index = 0;
-	while (index < codexion->number_of_coders)
+	while (index < sim->number_of_coders)
 	{
-		codexion->coders[index].id = index;
-		codexion->coders[index].state = IDLE;
-		codexion->coders[index].compiles_done = 0;
-		codexion->coders[index].last_compile_time = -1;
-		codexion->coders[index].right_dongle = -1;
-		codexion->coders[index].left_dongle = -1;
-		codexion->coders[index].codexion = codexion;
+		sim->coders[index].id = index;
+		sim->coders[index].state = IDLE;
+		sim->coders[index].compiles_done = 0;
+		sim->coders[index].last_compile_time = -1;
+		sim->coders[index].last_state_time = -1;
+		sim->coders[index].right_dongle = -1;
+		sim->coders[index].left_dongle = -1;
+		sim->coders[index].sim = sim;
 
 		index++;
 	}
-	return (0);
-}
-
-int create_threads(t_codexion *codexion)
-{
-	int			index;
-
-	index = 0;
-	while (index < codexion->number_of_coders)
-	{
-		pthread_create(
-			&(codexion->coders[index].thread),
-			NULL,
-			&coder_logic,
-			&(codexion->coders[index])
-		);
-		index++;
-	}
-
-	return (0);
+	return (1);
 }

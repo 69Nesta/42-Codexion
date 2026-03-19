@@ -3,21 +3,21 @@
 #include "dongle.h"
 
 
-int	free_dongles(t_codexion *codexion)
+int	free_dongles(t_sim *sim)
 {
 	int	index;
 
-	if (!codexion->dongles)
-		return (1);
+	if (!sim->dongles)
+		return (0);
 
 	index = 0;
-	while (index < codexion->number_of_coders)
+	while (index < sim->number_of_coders)
 	{
-		pthread_mutex_destroy(&codexion->dongles[index].mutex);
+		pthread_mutex_destroy(&sim->dongles[index].mutex);
 		index++;
 	}
-	free(codexion->dongles);
-	codexion->dongles = NULL;
+	free(sim->dongles);
+	sim->dongles = NULL;
 
 	return (0);
 }

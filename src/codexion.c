@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <pthread.h>
 
 #include "codexion.h"
 #include "args.h"
@@ -7,47 +6,30 @@
 #include "logger.h"
 
 
-int	run_all_coders(t_codexion *codexion)
-{
-	int	index;
-
-	index = 0;
-	while (index < codexion->number_of_coders)
-	{
-		pthread_join(codexion->coders[index].thread, NULL);
-		index++;
-	}
-
-	return (0);
-}
-
-
 int main(int argc, char **argv)
 {
-	t_codexion	codexion;
+	t_sim	sim;
 
-	if (ft_check_args(&codexion, argc, argv))
+	sim.stop = 0;
+	if (ft_check_args(&sim, argc, argv))
 		return (1);
 
-	printf("Number of coders: %d\n", codexion.number_of_coders);
-	printf("Time to burnout: %d\n", codexion.time_to_burnout);
-	printf("Time to compile: %d\n", codexion.time_to_compile);
-	printf("Time to debug: %d\n", codexion.time_to_debug);
-	printf("Time to refactor: %d\n", codexion.time_to_refactor);
-	printf("Number of compiles required: %d\n", codexion.number_of_compiles_required);
-	printf("Dongle cooldown: %d\n", codexion.dongle_cooldown);
-	printf("Scheduler algorithm: %d\n\n-----------\n\n", codexion.scheduler);
+	printf("Number of coders: %d\n", sim.number_of_coders);
+	printf("Time to burnout: %d\n", sim.time_to_burnout);
+	printf("Time to compile: %d\n", sim.time_to_compile);
+	printf("Time to debug: %d\n", sim.time_to_debug);
+	printf("Time to refactor: %d\n", sim.time_to_refactor);
+	printf("Number of compiles required: %d\n", sim.number_of_compiles_required);
+	printf("Dongle cooldown: %d\n", sim.dongle_cooldown);
+	printf("Scheduler algorithm: %d\n\n-----------\n\n", sim.scheduler);
 
-	create_coders(&codexion);
-	create_dongles(&codexion);
+	if (!init_simulation(&sim))
+		return (error("Something append during initalization !\n"));
 
+	run_simulation(&sim);
 
-	start_timestamp();
-	create_threads(&codexion);
-	run_all_coders(&codexion);
+	join_coders_thread(&sim);
 
-	free_dongles(&codexion);
-	free_coders(&codexion);
-
+	cleanup_simulation(&sim, 0);
 	return (0);
 }
