@@ -17,8 +17,16 @@ int	create_dongles(t_sim *sim)
 		sim->dongles[index].id = index;
 		sim->dongles[index].taken = FALSE;
 		sim->dongles[index].last_use_time = -1;
-		pthread_mutex_init(&sim->dongles[index].mutex, NULL);
+		if (pthread_mutex_init(&sim->dongles[index].mutex, NULL))
+			break;
 		index++;
 	}
+
+	while(index != sim->number_of_coders && index > 0)
+		pthread_mutex_destroy(&sim->dongles[--index].mutex);
+
+	if (index <= 0)
+		return (0);
+
 	return (1);
 }
