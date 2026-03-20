@@ -2,7 +2,7 @@
 #include "codexion.h"
 #include "logger.h"
 
-void	*coder_routine(void* arg)
+void	*coder_core(void* arg)
 {
 	t_coder	*coder	= (t_coder *)arg;
 	t_sim	*sim	= coder->sim;
@@ -20,8 +20,7 @@ void	*coder_routine(void* arg)
 	if (coder->id % 2 == 0)
 		usleep(1500);
 
-	// coder_routine there
-	log_action(sim, coder->id, TAKE_DONGLE_ACTION);
+	start_coder_routine(sim, coder);
 
 	return (NULL);
 }

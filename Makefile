@@ -51,7 +51,8 @@ CODEXION_CODER				= create_coders.c \
 							free_coders_queue.c \
 							create_coders_thread.c \
 							join_coders_thread.c \
-							coder_routine.c
+							coder_core.c \
+							start_coder_routine.c
 
 # Dongles (in src/dongle/)
 CODEXION_DONGLE_DIR			= src/dongle/

@@ -38,6 +38,10 @@ typedef struct s_sim
 	t_coder			**queue;
 	pthread_mutex_t	m_queue;
 	pthread_mutex_t	m_log;
+	
+	int				dongles_availables;
+	pthread_mutex_t	m_dongles_availables;
+	pthread_cond_t	c_dongles_availables;
 
 	t_sim_state		state;
 	pthread_mutex_t	m_state;
@@ -80,12 +84,15 @@ int		free_coders_queue(t_sim *sim);
 int		create_coders_thread(t_sim *sim);
 int		join_coders_thread(t_sim *sim);
 
-void	*coder_routine(void* arg);
+void	*coder_core(void* arg);
+int		start_coder_routine(t_sim *sim, t_coder *coder);
 
 int		set_sim_state(t_sim *sim, t_sim_state state);
 int		init_simulation(t_sim *sim);
 int 	run_simulation(t_sim *sim);
 int 	cleanup_simulation(t_sim *sim, int index);
+
+int		dongle_can_be_used(t_sim *sim, t_dongle *dongle);
 
 
 #endif

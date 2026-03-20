@@ -11,7 +11,7 @@ int	create_coders_thread(t_sim *sim)
 	index = 0;
 	while (index < sim->number_of_coders)
 	{
-		if (pthread_create(&(sim->coders[index].thread), NULL, &coder_routine,
+		if (pthread_create(&(sim->coders[index].thread), NULL, &coder_core,
 				&(sim->coders[index])))
 			break;
 		index++;
