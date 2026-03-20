@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "codexion.h"
 
 
@@ -15,21 +16,17 @@ int	init_simulation(t_sim *sim)
 		return (cleanup_simulation(sim, 1));
 	if (pthread_mutex_init(&sim->m_state, NULL))
 		return (cleanup_simulation(sim, 2));
-	if (pthread_mutex_init(&sim->m_dongles_availables, NULL))
-		return (cleanup_simulation(sim, 3));
-
 	if (pthread_cond_init(&sim->c_state, NULL))
-		return (cleanup_simulation(sim, 4));
+		return (cleanup_simulation(sim, 3));
 	if (pthread_cond_init(&sim->c_dongles_availables, NULL))
-		return (cleanup_simulation(sim, 5));
-
+		return (cleanup_simulation(sim, 4));
 	if (!create_dongles(sim))
-		return (cleanup_simulation(sim, 6));
+		return (cleanup_simulation(sim, 5));
 	if (!create_coders_queue(sim))
-		return (cleanup_simulation(sim, 7));
+		return (cleanup_simulation(sim, 6));
 	if (!create_coders(sim))
-		return (cleanup_simulation(sim, 8));
+		return (cleanup_simulation(sim, 7));
 	if (!create_coders_thread(sim))
-		return (cleanup_simulation(sim, 9));
+		return (cleanup_simulation(sim, 8));
 	return (1);
 }

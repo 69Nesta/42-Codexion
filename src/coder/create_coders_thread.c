@@ -1,7 +1,6 @@
 #include "codexion.h"
 #include "coder.h"
 
-
 #include <stdio.h>
 
 int	create_coders_thread(t_sim *sim)

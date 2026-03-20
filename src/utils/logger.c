@@ -20,7 +20,7 @@ int log_action(t_sim *sim, int coder_id, t_action action)
 	};
 
 	pthread_mutex_lock(&sim->m_log);
-	printf("%d %d %s\n", get_timestamp(), coder_id, action_str[action]);
+	printf("%ld %d %s\n", get_timestamp(), coder_id, action_str[action]);
 	pthread_mutex_unlock(&sim->m_log);
 
 	return (1);

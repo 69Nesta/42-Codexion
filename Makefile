@@ -25,7 +25,7 @@ CC       = cc
 
 DEPFLAGS = -MMD -MP
 CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror -pthread
-DEBUG_FLAGS = -g3
+DEBUG_FLAGS = -g3 -fsanitize=address
 
 BONUS_CFLAGS := $(CFLAGS) -DPRINT_OPERATION=0
 
@@ -52,12 +52,22 @@ CODEXION_CODER				= create_coders.c \
 							create_coders_thread.c \
 							join_coders_thread.c \
 							coder_core.c \
-							start_coder_routine.c
+							start_coder_routine.c \
+							start_compiling.c \
+							start_debugging.c \
+							start_refactoring.c
 
 # Dongles (in src/dongle/)
 CODEXION_DONGLE_DIR			= src/dongle/
 CODEXION_DONGLE				= create_dongles.c \
-							free_dongles.c
+							free_dongles.c \
+							wait_for_dongles.c \
+							dongle_can_be_used.c \
+							release_dongle.c \
+							release_dongles.c \
+							register_to_dongle_queue.c \
+							remove_coder_from_queue.c
+
 
 # Simulation (in src/simulation/)
 CODEXION_SIMULATION_DIR		= src/simulation/

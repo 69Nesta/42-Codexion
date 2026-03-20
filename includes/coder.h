@@ -1,6 +1,8 @@
 #ifndef CODER_H
 # define CODER_H
 
+# include <stddef.h> 
+
 # include <pthread.h>
 # include "dongle.h"
 

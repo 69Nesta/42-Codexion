@@ -1,5 +1,5 @@
+#include <stdlib.h>
 #include "codexion.h"
-
 
 int	join_coders_thread(t_sim *sim)
 {

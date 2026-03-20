@@ -22,9 +22,9 @@ int	create_coders(t_sim *sim)
 		sim->coders[index].state = IDLE;
 		sim->coders[index].compiles_done = 0;
 		sim->coders[index].last_compile_time = -1;
-		sim->coders[index].last_state_time = -1;
-		sim->coders[index].right_dongle = -1;
-		sim->coders[index].left_dongle = -1;
+		// sim->coders[index].last_state_time = -1;
+		sim->coders[index].right_dongle = NULL;
+		sim->coders[index].left_dongle = NULL;
 		sim->coders[index].sim = sim;
 
 		index++;

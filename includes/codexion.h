@@ -40,7 +40,6 @@ typedef struct s_sim
 	pthread_mutex_t	m_log;
 	
 	int				dongles_availables;
-	pthread_mutex_t	m_dongles_availables;
 	pthread_cond_t	c_dongles_availables;
 
 	t_sim_state		state;
@@ -52,7 +51,7 @@ typedef struct s_dongle
 {
 	int				id;
 	t_bool			taken;
-	int				last_use_time;
+	long			last_use_time;
 	t_sim			*sim;
 	pthread_mutex_t	mutex;
 }	t_dongle;
@@ -63,10 +62,10 @@ typedef struct s_coder
 	int				id;
 	t_coder_state	state;
 	int				compiles_done;
-	int				last_compile_time;
-	int				last_state_time;
-	int				right_dongle;
-	int				left_dongle;
+	long			last_compile_time;
+	// int				last_state_time;
+	t_dongle		*right_dongle;
+	t_dongle		*left_dongle;
 	t_sim			*sim;
 	pthread_t		thread;
 }	t_coder;
@@ -92,7 +91,16 @@ int		init_simulation(t_sim *sim);
 int 	run_simulation(t_sim *sim);
 int 	cleanup_simulation(t_sim *sim, int index);
 
+int		start_compiling(t_sim *sim, t_coder *coder);
+int		start_debugging(t_sim *sim, t_coder *coder);
+int		start_refactoring(t_sim *sim, t_coder *coder);
+
+int		wait_for_dongles(t_sim *sim, t_coder *coder);
+int		release_dongle(t_dongle *dongle);
+int		release_dongles(t_sim *sim, t_coder *coder);
 int		dongle_can_be_used(t_sim *sim, t_dongle *dongle);
 
+int		register_coder_to_queue(t_sim *sim, t_coder *coder);
+int		remove_coder_from_queue(t_sim *sim, t_coder *coder);
 
 #endif
