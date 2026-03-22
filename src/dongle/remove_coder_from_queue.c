@@ -2,21 +2,42 @@
 #include <stdio.h>
 
 
-int	remove_coder_from_queue(t_sim *sim, t_coder *coder)
+void	print_queue(t_sim *sim)
 {
-	int	index;
+	int index;
 
-	index = 1;
-	if (sim->queue[0] == coder)
+	index = 0;
+	printf("Queue: ");
+	while (index < sim->number_of_coders)
 	{
-		sim->queue[0] = NULL;
-		while (index < sim->number_of_coders && sim->queue[index] != NULL)
-		{
-			sim->queue[index - 1] = sim->queue[index];
-			sim->queue[index] = NULL;
-			index++;
-		}
+		if (sim->queue[index])
+			printf("%d ", sim->queue[index]->id);
+		else
+			printf("NULL ");
+		index++;
 	}
-	pthread_cond_broadcast(&sim->c_dongles_availables);
-	return (1);
+	printf("\n");
+}
+
+
+int remove_coder_from_queue(t_sim *sim, t_coder *coder)
+{
+    int index;
+    int found;
+
+    index = 0;
+    found = 0;
+
+	while (index < sim->number_of_coders)
+	{
+		if (sim->queue[index] == coder)
+			found = 1;
+		if (found && index + 1 < sim->number_of_coders)
+			sim->queue[index] = sim->queue[index + 1];
+		index++;
+	}
+	if (found)
+		sim->queue[index - 1] = NULL;
+
+    return (found);
 }

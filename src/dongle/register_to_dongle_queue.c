@@ -1,4 +1,6 @@
 #include "codexion.h"
+#include <stdio.h>
+#include "time.h"
 
 int	register_coder_to_queue(t_sim *sim, t_coder *coder)
 {
@@ -9,6 +11,8 @@ int	register_coder_to_queue(t_sim *sim, t_coder *coder)
 
 	while (sim->queue[index] != NULL && index < sim->number_of_coders)
 		index++;
+
+	// printf("Coder %d is registering to queue pos %d | at: %ld\n", coder->id, index, get_timestamp());
 
 	sim->queue[index] = coder;
 	pthread_mutex_unlock(&sim->m_queue);

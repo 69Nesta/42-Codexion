@@ -4,6 +4,8 @@
 
 int	dongle_can_be_used(t_sim *sim, t_dongle *dongle)
 {
+	(void)sim;
+
 	return (
 		!dongle->taken &&
 		(

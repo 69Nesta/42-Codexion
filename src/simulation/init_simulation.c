@@ -9,7 +9,7 @@ int	init_simulation(t_sim *sim)
 	sim->coders = NULL;
 	sim->dongles = NULL;
 	sim->queue = NULL;
-
+	sim->dongles_availables = sim->number_of_coders;
 	if (pthread_mutex_init(&sim->m_queue, NULL))
 		return (0);
 	if (pthread_mutex_init(&sim->m_log, NULL))
