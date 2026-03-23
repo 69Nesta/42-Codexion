@@ -77,7 +77,7 @@ int check_content(t_sim *settings)
 		0
 	};
 
-	if (check != 0 && check < ARGS_REQUIRED)
+	if (check != -1 && check < ARGS_REQUIRED)
 	{
 		printf("%sError:%s %s\n", RED, CRESET, args[check]);
 		return (1);

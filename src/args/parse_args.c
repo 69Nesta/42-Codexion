@@ -53,5 +53,5 @@ int		ft_check_settings(t_sim *settings)
 		index++;
 	}
 
-	return (0);
+	return (-1);
 }
