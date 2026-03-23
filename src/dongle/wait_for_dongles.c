@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:57 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:47:58 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/23 19:04:46 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ int wait_for_dongles(t_sim *sim, t_coder *coder)
 
 	sim->dongles_availables -= 2;
 	remove_coder_from_queue(sim, coder);
+
 	if (sim->dongles_availables > 0)
 		pthread_cond_broadcast(&sim->c_dongles_availables);
-	// printf("\e[0;32mCoder %d is taking dongles | at: %ld\n\e[0m", coder->id, get_timestamp());
+
 	pthread_mutex_unlock(&sim->m_queue);
 
 	index = 0;
@@ -63,6 +64,5 @@ int wait_for_dongles(t_sim *sim, t_coder *coder)
 		return (0);
 	}
 
-	wait_dongles_cooldown(sim, coder);
-	return (1);
+	return (wait_dongles_cooldown(sim, coder));
 }

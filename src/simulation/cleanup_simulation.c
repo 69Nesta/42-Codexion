@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:00 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:48:01 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/23 19:42:08 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int cleanup_simulation(t_sim *sim, int index)
 	if (index >= 7 || index == 0)
 		free_coders_queue(sim);
 	if (index >= 8 || index == 0)
+		feee_monitor(sim);
+	if (index >= 9 || index == 0)
 		free_coders(sim);
 
 	return (0);

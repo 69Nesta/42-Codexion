@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:03 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:48:04 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/23 18:12:37 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int	init_simulation(t_sim *sim)
 		return (cleanup_simulation(sim, 6));
 	if (!create_coders(sim))
 		return (cleanup_simulation(sim, 7));
-	if (!create_coders_thread(sim))
+	if (!create_monitor_thread(sim))
 		return (cleanup_simulation(sim, 8));
+	if (!create_coders_thread(sim))
+		return (cleanup_simulation(sim, 9));
 	return (1);
 }

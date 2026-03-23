@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_debugging.c                                  :+:      :+:    :+:   */
+/*   free_monitor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 17:47:34 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 19:01:18 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/23 19:07:01 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/23 19:42:16 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "codexion.h"
-#include "logger.h"
 
-int	start_debugging(t_sim *sim, t_coder *coder)
+
+int	free_monitor(t_sim *sim)
 {
-	log_action(sim, coder->id, DEBUG_ACTION);
-	usleep(sim->time_to_debug * 1000);
-	
-	if (sim->stop)
-		return (0);
-	return (1);
+	// join_monitor_thread(sim);
+	return (0);
 }

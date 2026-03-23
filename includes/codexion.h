@@ -45,6 +45,8 @@ typedef struct s_sim
 	t_sim_state		state;
 	pthread_mutex_t	m_state;
 	pthread_cond_t	c_state;
+
+	pthread_t		monitor_thread;
 }	t_sim;
 
 typedef struct s_dongle
@@ -85,6 +87,8 @@ int		join_coders_thread(t_sim *sim);
 
 void	*coder_core(void* arg);
 int		start_coder_routine(t_sim *sim, t_coder *coder);
+int 	coder_has_burnout(t_sim *sim, t_coder *coder, long current_time);
+
 
 int		set_sim_state(t_sim *sim, t_sim_state state);
 int		init_simulation(t_sim *sim);
@@ -101,7 +105,11 @@ int		release_dongle(t_dongle *dongle);
 int		release_dongles(t_sim *sim, t_coder *coder);
 int		dongle_can_be_used(t_sim *sim, t_dongle *dongle);
 
-
+int		create_monitor_thread(t_sim *sim);
+void	*monitor_core(void *arg);
+int		monitor_routine(t_sim *sim);
+int		join_monitor_thread(t_sim *sim);
+int		free_monitor(t_sim *sim);
 
 int		register_coder_to_queue(t_sim *sim, t_coder *coder);
 int		remove_coder_from_queue(t_sim *sim, t_coder *coder);
