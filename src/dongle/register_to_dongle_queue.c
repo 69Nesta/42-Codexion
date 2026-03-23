@@ -12,7 +12,7 @@ int	register_coder_to_queue(t_sim *sim, t_coder *coder)
 	while (sim->queue[index] != NULL && index < sim->number_of_coders)
 		index++;
 
-	// printf("Coder %d is registering to queue pos %d | at: %ld\n", coder->id, index, get_timestamp());
+	// printf("\e[0;36mCoder %d is registering to queue pos %d | at: %ld\n\e[0m", coder->id, index, get_timestamp());
 
 	sim->queue[index] = coder;
 	pthread_mutex_unlock(&sim->m_queue);

@@ -4,12 +4,15 @@
 
 int	release_dongles(t_sim *sim, t_coder *coder)
 {
-	if (!coder->left_dongle || !coder->right_dongle)
-		return (0);
-	// printf("Coder %d is releasing dongles | at: %ld\n", coder->id, get_timestamp());
-	release_dongle(coder->left_dongle);
+	// if (!coder->left_dongle || !coder->right_dongle)
+	// 	return (0);
+	// printf("\e[0;35mCoder %d is releasing dongles | at: %ld | dongle1: %d | dongle2: %d\n\e[0m", coder->id, get_timestamp(), coder->left_dongle->id, coder->right_dongle->id);
+	if (coder->left_dongle)
+		release_dongle(coder->left_dongle);
 	coder->left_dongle = NULL;
-	release_dongle(coder->right_dongle);
+
+	if (coder->right_dongle)
+		release_dongle(coder->right_dongle);
 	coder->right_dongle = NULL;
 
 	pthread_mutex_lock(&sim->m_queue);

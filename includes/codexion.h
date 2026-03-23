@@ -96,9 +96,12 @@ int		start_debugging(t_sim *sim, t_coder *coder);
 int		start_refactoring(t_sim *sim, t_coder *coder);
 
 int		wait_for_dongles(t_sim *sim, t_coder *coder);
+int		wait_dongles_cooldown(t_sim *sim, t_coder *coder);
 int		release_dongle(t_dongle *dongle);
 int		release_dongles(t_sim *sim, t_coder *coder);
 int		dongle_can_be_used(t_sim *sim, t_dongle *dongle);
+
+
 
 int		register_coder_to_queue(t_sim *sim, t_coder *coder);
 int		remove_coder_from_queue(t_sim *sim, t_coder *coder);

@@ -25,7 +25,7 @@ CC       = cc
 
 DEPFLAGS = -MMD -MP
 CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror -pthread
-DEBUG_FLAGS = -g3 -fsanitize=address
+DEBUG_FLAGS = -g3
 
 BONUS_CFLAGS := $(CFLAGS) -DPRINT_OPERATION=0
 
@@ -66,7 +66,8 @@ CODEXION_DONGLE				= create_dongles.c \
 							release_dongle.c \
 							release_dongles.c \
 							register_to_dongle_queue.c \
-							remove_coder_from_queue.c
+							remove_coder_from_queue.c \
+							wait_dongles_cooldown.c
 
 
 # Simulation (in src/simulation/)
