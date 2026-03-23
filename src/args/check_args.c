@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:02 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:47:06 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/23 17:53:02 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ int check_content(t_sim *settings)
 		"Invalid number of compiles required (must be > 0)",
 		"Invalid dongle cooldown (must be > 0)",
 		"Invalid scheduler (must be 'fifo' or 'edf')",
+		"Too many coders (must be <= 200)",
 		0
 	};
 
-	if (check != -1 && check < ARGS_REQUIRED)
+	if (check != -1)
 	{
 		printf("%sError:%s %s\n", RED, CRESET, args[check]);
 		return (1);

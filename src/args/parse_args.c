@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:08 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:47:10 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/23 17:50:09 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		ft_check_settings(t_sim *settings)
 		settings->number_of_compiles_required <= 0,
 		settings->dongle_cooldown <= 0,
 		settings->scheduler != FIFO && settings->scheduler != EDF,
+		settings->number_of_coders > 200,
 		-1
 	};
 	int	index;
