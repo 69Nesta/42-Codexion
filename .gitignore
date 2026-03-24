@@ -4,3 +4,6 @@ codexion
 # Object files
 .obj
 *.out
+
+# output files
+results.txt

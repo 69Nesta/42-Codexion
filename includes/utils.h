@@ -3,8 +3,8 @@
 
 typedef enum e_bool
 {
-	FALSE,
-	TRUE
+	FALSE = 0,
+	TRUE = 1
 }	t_bool;
 
 long	ft_strtol(const char *str, char **endptr, int *error);

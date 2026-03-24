@@ -6,14 +6,14 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:55 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 19:04:40 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 11:17:26 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "codexion.h"
 #include "logger.h"
-
+#include "clock.h"
 
 int	wait_dongles_cooldown(t_sim *sim, t_coder *coder)
 {

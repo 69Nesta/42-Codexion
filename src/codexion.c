@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:24 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 10:37:11 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 11:17:26 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "codexion.h"
 #include "args.h"
-#include "time.h"
+#include "clock.h"
 #include "logger.h"
 
 

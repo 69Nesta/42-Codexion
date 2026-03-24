@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   release_dongle.c                                   :+:      :+:    :+:   */
+/*   time_left_to_burnout.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 17:47:48 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 11:17:26 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/24 11:46:39 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 13:12:42 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include "clock.h"
 
 
-int	release_dongle(t_dongle *dongle)
+long	time_left_to_burnout(t_sim *sim, t_coder *coder, long current_time)
 {
-	pthread_mutex_lock(&dongle->mutex);
-	dongle->taken = FALSE;
-	dongle->last_use_time = get_timestamp();
-	pthread_mutex_unlock(&dongle->mutex);
-	return (1);
+	long time_since_last_compile = current_time - coder->last_compile_time;
+	return (sim->time_to_burnout - time_since_last_compile);
 }

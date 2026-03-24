@@ -6,13 +6,14 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:31 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 19:00:51 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 11:17:26 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "codexion.h"
 #include "logger.h"
+#include "clock.h"
 
 
 int	start_compiling(t_sim *sim, t_coder *coder)

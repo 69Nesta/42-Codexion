@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:12 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:48:13 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 11:21:17 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "codexion.h"
 #include "colors.h"
 #include "coder.h"
-#include "time.h"
+#include "clock.h"
 
 int error(char *str)
 {
@@ -32,6 +32,11 @@ int log_action(t_sim *sim, int coder_id, t_action action)
 	};
 
 	pthread_mutex_lock(&sim->m_log);
+	if (sim->stop)
+	{
+		pthread_mutex_unlock(&sim->m_log);
+		return (0);
+	}
 	printf("%ld %d %s\n", get_timestamp(), coder_id, action_str[action]);
 	pthread_mutex_unlock(&sim->m_log);
 

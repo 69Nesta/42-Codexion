@@ -88,7 +88,8 @@ int		join_coders_thread(t_sim *sim);
 void	*coder_core(void* arg);
 int		start_coder_routine(t_sim *sim, t_coder *coder);
 int 	coder_has_burnout(t_sim *sim, t_coder *coder, long current_time);
-
+int		coder_has_finish_compiles(t_sim *sim, t_coder *coder);
+long	time_left_to_burnout(t_sim *sim, t_coder *coder, long current_time);
 
 int		set_sim_state(t_sim *sim, t_sim_state state);
 int		init_simulation_variables(t_sim *sim);

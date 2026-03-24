@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:57 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 19:04:46 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 11:20:28 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,24 @@
 #include "logger.h"
 
 #include <stdio.h>
-#include "time.h"
+#include "clock.h"
+#include <sys/time.h>
+#include <time.h>
+
 
 int wait_for_dongles(t_sim *sim, t_coder *coder)
 {
 	int index;
 	int taken;
-
+	// struct timespec ts;
+	
+	// clock_gettime(0, &ts);
+	// ts.tv_nsec += 20;
 
 	pthread_mutex_lock(&sim->m_queue);
 	while ((sim->dongles_availables < 2 || sim->queue[0] != coder) && !sim->stop)
 		pthread_cond_wait(&sim->c_dongles_availables, &sim->m_queue);
+		// pthread_cond_timedwait(&sim->c_dongles_availables, &sim->m_queue, &ts);
 
 	if (sim->stop)
 	{

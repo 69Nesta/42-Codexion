@@ -56,7 +56,9 @@ CODEXION_CODER				= create_coders.c \
 							start_compiling.c \
 							start_debugging.c \
 							start_refactoring.c \
-							coder_has_burnout.c
+							coder_has_burnout.c \
+							coder_has_finish_compiles.c \
+							time_left_to_burnout.c
 
 # Dongles (in src/dongle/)
 CODEXION_DONGLE_DIR			= src/dongle/
@@ -87,7 +89,7 @@ CODEXION_MONITOR			= create_monitor_thread.c \
 
 # Utils sources (in src/utils/)
 CODEXION_UTILS_DIR			= src/utils/
-CODEXION_UTILS				= time.c \
+CODEXION_UTILS				= clock.c \
 							logger.c \
 							parse_int.c
 

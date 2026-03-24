@@ -6,13 +6,13 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:05 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:48:06 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 11:17:26 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "codexion.h"
-#include "time.h"
+#include "clock.h"
 
 int run_simulation(t_sim *sim)
 {
