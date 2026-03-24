@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:05:28 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:06:54 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 14:39:18 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ void	*monitor_core(void *arg);
 int		monitor_routine(t_sim *sim);
 int		join_monitor_thread(t_sim *sim);
 
+int		insert_into_queue_fifo(t_sim *sim, t_coder *coder);
+int		insert_into_queue_edf(t_sim *sim, t_coder *coder, long current_time);
 int		register_coder_to_queue(t_sim *sim, t_coder *coder);
 int		remove_coder_from_queue(t_sim *sim, t_coder *coder);
 

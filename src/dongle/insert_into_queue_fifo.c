@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   register_to_dongle_queue.c                         :+:      :+:    :+:   */
+/*   insert_into_queue_fifo.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 17:47:46 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:40:03 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/24 14:36:18 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 16:19:41 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "codexion.h"
-#include "clock.h"
 
 
-int	register_coder_to_queue(t_sim *sim, t_coder *coder)
+int	insert_into_queue_fifo(t_sim *sim, t_coder *coder)
 {
-	pthread_mutex_lock(&sim->m_queue);
-	if (sim->scheduler == FIFO)
-		insert_into_queue_fifo(sim, coder);
-	else if (sim->scheduler == EDF)
-		insert_into_queue_edf(sim, coder, get_timestamp());
+	int		index;
 	
-	pthread_mutex_unlock(&sim->m_queue);
+	index = 0;
+	while (sim->queue[index] != NULL && index < sim->number_of_coders)
+		index++;
+	sim->queue[index] = coder;
+
 	return (1);
 }

@@ -68,6 +68,8 @@ CODEXION_DONGLE				= create_dongles.c \
 							dongle_can_be_used.c \
 							release_dongle.c \
 							release_dongles.c \
+							insert_into_queue_edf.c \
+							insert_into_queue_fifo.c \
 							register_to_dongle_queue.c \
 							remove_coder_from_queue.c \
 							wait_dongles_cooldown.c

@@ -6,30 +6,12 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:53 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:47:54 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 16:18:09 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 #include <stdio.h>
-
-
-void	print_queue(t_sim *sim)
-{
-	int index;
-
-	index = 0;
-	printf("Queue: ");
-	while (index < sim->number_of_coders)
-	{
-		if (sim->queue[index])
-			printf("%d ", sim->queue[index]->id);
-		else
-			printf("NULL ");
-		index++;
-	}
-	printf("\n");
-}
 
 
 int remove_coder_from_queue(t_sim *sim, t_coder *coder)
