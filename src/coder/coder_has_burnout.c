@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_debugging.c                                  :+:      :+:    :+:   */
+/*   coder_has_burnout.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 17:47:34 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 19:01:18 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/23 18:30:22 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 10:40:19 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "codexion.h"
-#include "logger.h"
+#include "time.h"
 
-int	start_debugging(t_sim *sim, t_coder *coder)
+
+int coder_has_burnout(t_sim *sim, t_coder *coder, long current_time)
 {
-	log_action(sim, coder->id, DEBUG_ACTION);
-	usleep(sim->time_to_debug * 1000);
-	
-	if (sim->stop)
-		return (0);
-	return (1);
+	return (coder->last_compile_time + sim->time_to_burnout <= current_time);
 }

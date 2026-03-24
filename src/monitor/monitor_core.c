@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_debugging.c                                  :+:      :+:    :+:   */
+/*   monitor_core.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 17:47:34 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 19:01:18 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/23 18:12:59 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/23 18:59:06 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "codexion.h"
-#include "logger.h"
 
-int	start_debugging(t_sim *sim, t_coder *coder)
+
+void	*monitor_core(void *arg)
 {
-	log_action(sim, coder->id, DEBUG_ACTION);
-	usleep(sim->time_to_debug * 1000);
+	t_sim	*sim;
+
+	sim = (t_sim *)arg;
+	pthread_mutex_lock(&sim->m_state);
+	while (sim->state == SIM_WAITING)
+		pthread_cond_wait(&sim->c_state, &sim->m_state);
+	pthread_mutex_unlock(&sim->m_state);
+	if (sim->state == SIM_FAIL)
+		return (NULL);
 	
-	if (sim->stop)
-		return (0);
-	return (1);
+	monitor_routine(sim);
+	
+	return (NULL);
 }

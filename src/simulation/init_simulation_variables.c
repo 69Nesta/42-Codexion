@@ -1,41 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_coders_thread.c                             :+:      :+:    :+:   */
+/*   init_simulation_variables.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 17:47:19 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 10:38:11 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/24 10:44:31 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 10:44:50 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include "coder.h"
 
-#include <stdio.h>
 
-int	create_coders_thread(t_sim *sim)
+int	init_simulation_variables(t_sim *sim)
 {
-	int	index;
+	sim->stop = 0;
+	sim->state = SIM_WAITING;
+	sim->coders = NULL;
+	sim->dongles = NULL;
+	sim->queue = NULL;
+	sim->dongles_availables = sim->number_of_coders;
 
-	index = 0;
-	while (index < sim->number_of_coders)
-	{
-		if (pthread_create(&(sim->coders[index].thread), NULL, &coder_core,
-				&(sim->coders[index])))
-			break;
-		index++;
-	}
-	if (index != sim->number_of_coders)
-	{
-		set_sim_state(sim, SIM_FAIL);
-		while (index >= 0)
-		{
-			pthread_join(sim->coders[index].thread, NULL);
-			index--;
-		}
-		return (0);
-	}
 	return (1);
 }
