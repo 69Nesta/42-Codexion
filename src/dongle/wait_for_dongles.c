@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:57 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 11:20:28 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 13:58:42 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int wait_for_dongles(t_sim *sim, t_coder *coder)
 		pthread_mutex_unlock(&sim->dongles[index].mutex);
 		index++;
 	}
-	if (taken < 2)
+	if (taken < 2 || sim->stop)
 	{
-		error("Failed to take dongles\n");
+		// error("Failed to take dongles\n");
 		return (0);
 	}
 

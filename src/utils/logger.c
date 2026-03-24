@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:12 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 11:21:17 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 14:01:43 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int log_action(t_sim *sim, int coder_id, t_action action)
 	};
 
 	pthread_mutex_lock(&sim->m_log);
-	if (sim->stop)
+	if (sim->stop && action != BURNOUT_ACTION)
 	{
 		pthread_mutex_unlock(&sim->m_log);
 		return (0);

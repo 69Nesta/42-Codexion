@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:19:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 11:24:26 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 14:03:39 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	monitor_routine(t_sim *sim)
 			if (coder_has_burnout(sim, &sim->coders[index], current_time))
 			{
 				pthread_mutex_lock(&sim->m_state);
-				log_action(sim, index, BURNOUT_ACTION);
 				sim->state = SIM_FAIL;
 				sim->stop = TRUE;
+				log_action(sim, index, BURNOUT_ACTION);
 				pthread_cond_broadcast(&sim->c_state);
 				pthread_mutex_unlock(&sim->m_state);
 				return (0);
