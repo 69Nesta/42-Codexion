@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   coder.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 14:05:26 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 14:06:49 by rpetit           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CODER_H
 # define CODER_H
 
 # include <stddef.h> 
-
 # include <pthread.h>
-# include "dongle.h"
 
 typedef enum e_coder_state
 {
