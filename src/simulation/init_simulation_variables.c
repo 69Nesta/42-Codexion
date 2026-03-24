@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_monitor.c                                     :+:      :+:    :+:   */
+/*   init_simulation_variables.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 19:07:01 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 19:42:16 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/24 10:44:31 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 10:44:50 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
 
-int	free_monitor(t_sim *sim)
+int	init_simulation_variables(t_sim *sim)
 {
-	// join_monitor_thread(sim);
-	return (0);
+	sim->stop = 0;
+	sim->state = SIM_WAITING;
+	sim->coders = NULL;
+	sim->dongles = NULL;
+	sim->queue = NULL;
+	sim->dongles_availables = sim->number_of_coders;
+
+	return (1);
 }

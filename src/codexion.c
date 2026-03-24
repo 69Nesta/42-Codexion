@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:24 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:48:52 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 10:37:11 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 
 	run_simulation(&sim);
 
+	join_monitor_thread(&sim);
 	join_coders_thread(&sim);
 
 	cleanup_simulation(&sim, 0);

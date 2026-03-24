@@ -91,6 +91,7 @@ int 	coder_has_burnout(t_sim *sim, t_coder *coder, long current_time);
 
 
 int		set_sim_state(t_sim *sim, t_sim_state state);
+int		init_simulation_variables(t_sim *sim);
 int		init_simulation(t_sim *sim);
 int 	run_simulation(t_sim *sim);
 int 	cleanup_simulation(t_sim *sim, int index);
@@ -109,7 +110,6 @@ int		create_monitor_thread(t_sim *sim);
 void	*monitor_core(void *arg);
 int		monitor_routine(t_sim *sim);
 int		join_monitor_thread(t_sim *sim);
-int		free_monitor(t_sim *sim);
 
 int		register_coder_to_queue(t_sim *sim, t_coder *coder);
 int		remove_coder_from_queue(t_sim *sim, t_coder *coder);

@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:19 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:47:20 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/24 10:38:11 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	create_coders_thread(t_sim *sim)
 		set_sim_state(sim, SIM_FAIL);
 		while (index >= 0)
 		{
-			printf("Joining thread %d\n", index);
 			pthread_join(sim->coders[index].thread, NULL);
 			index--;
 		}

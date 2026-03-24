@@ -73,11 +73,12 @@ CODEXION_DONGLE				= create_dongles.c \
 # Simulation (in src/simulation/)
 CODEXION_SIMULATION_DIR		= src/simulation/
 CODEXION_SIMULATION			= set_sim_state.c \
+							init_simulation_variables.c \
 							init_simulation.c \
 							run_simulation.c \
 							cleanup_simulation.c
 
-# Simulation (in src/simulation/)
+# Simulation (in src/monitor/)
 CODEXION_MONITOR_DIR		= src/monitor/
 CODEXION_MONITOR			= create_monitor_thread.c \
 							join_monitor_thread.c \
