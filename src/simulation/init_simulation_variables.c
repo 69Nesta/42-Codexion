@@ -6,12 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 10:44:31 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 10:44:50 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:13:14 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-
 
 int	init_simulation_variables(t_sim *sim)
 {
@@ -21,6 +20,5 @@ int	init_simulation_variables(t_sim *sim)
 	sim->dongles = NULL;
 	sim->queue = NULL;
 	sim->dongles_availables = sim->number_of_coders;
-
 	return (1);
 }

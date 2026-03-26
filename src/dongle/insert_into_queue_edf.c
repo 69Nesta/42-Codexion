@@ -6,19 +6,18 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:36:18 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 16:23:26 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:09:30 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 #include "clock.h"
 
-
-int insert_into_queue_edf(t_sim *sim, t_coder *coder, long time)
+int	insert_into_queue_edf(t_sim *sim, t_coder *coder, t_time time)
 {
 	int		index;
-	long	coder_time;
-	long	current_time;
+	t_time	coder_time;
+	t_time	current_time;
 	t_coder	*temp;
 
 	index = 0;
@@ -27,9 +26,9 @@ int insert_into_queue_edf(t_sim *sim, t_coder *coder, long time)
 	{
 		current_time = time_left_to_burnout(sim, sim->queue[index], time);
 		if (current_time > coder_time)
-			break;
+			break ;
 		if (current_time == coder_time && sim->queue[index]->id > coder->id)
-			break;
+			break ;
 		index++;
 	}
 	while (index < sim->number_of_coders && sim->queue[index] != NULL)

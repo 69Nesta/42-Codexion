@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:12 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:01:43 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:22:39 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 #include "coder.h"
 #include "clock.h"
 
-int error(char *str)
+int	error(char *str)
 {
 	return (printf("%sERROR:%s %s", RED, CRESET, str));
 }
 
-int log_action(t_sim *sim, int coder_id, t_action action)
+int	log_action(t_sim *sim, int coder_id, t_action action)
 {
-	const char *action_str[] = {
-		[TAKE_DONGLE_ACTION] = "has taken a dongle",
-		[COMPILE_ACTION] = "is compiling",
-		[DEBUG_ACTION] = "is debugging",
-		[REFACTOR_ACTION] = "is refactoring",
-		[BURNOUT_ACTION] = "burned out"
+	const char	*action_str[] = {
+	[TAKE_DONGLE_ACTION] = "has taken a dongle",
+	[COMPILE_ACTION] = "is compiling",
+	[DEBUG_ACTION] = "is debugging",
+	[REFACTOR_ACTION] = "is refactoring",
+	[BURNOUT_ACTION] = "burned out"
 	};
 
 	pthread_mutex_lock(&sim->m_log);
@@ -37,8 +37,7 @@ int log_action(t_sim *sim, int coder_id, t_action action)
 		pthread_mutex_unlock(&sim->m_log);
 		return (0);
 	}
-	printf("%ld %d %s\n", get_timestamp(), coder_id, action_str[action]);
+	printf("%lld %d %s\n", get_timestamp(), coder_id, action_str[action]);
 	pthread_mutex_unlock(&sim->m_log);
-
 	return (1);
 }

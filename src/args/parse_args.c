@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:08 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 11:35:37 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 13:21:13 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,22 @@
 #include "codexion.h"
 #include "utils.h"
 
-int		ft_fill_settings(t_sim *settings, int argc, char **argv)
+int	ft_fill_settings(t_sim *settings, int argc, char **argv)
 {
-	int	*to_fill_int[] = {
+	const int	*to_fill_int[] = {
 		&settings->number_of_coders, &settings->time_to_burnout,
 		&settings->time_to_compile, &settings->time_to_debug,
 		&settings->time_to_refactor, &settings->number_of_compiles_required,
 		&settings->dongle_cooldown, 0
 	};
-	int	index;
+	int			index;
 
 	if (argc != 9)
 		return (1);
-
 	index = 0;
 	while (to_fill_int[index])
 	{
-		if (!parse_int(argv[index + 1], to_fill_int[index]))
+		if (!parse_int(argv[index + 1], (int *)to_fill_int[index]))
 			return (index);
 		index++;
 	}
@@ -44,9 +43,9 @@ int		ft_fill_settings(t_sim *settings, int argc, char **argv)
 	return (0);
 }
 
-int		ft_check_settings(t_sim *settings)
+int	ft_check_settings(t_sim *settings)
 {
-	int args_checker[] = {
+	const int	args_checker[] = {
 		settings->number_of_coders <= 0, settings->time_to_burnout <= 0,
 		settings->time_to_compile <= 0, settings->time_to_debug <= 0,
 		settings->time_to_refactor <= 0,
@@ -56,7 +55,7 @@ int		ft_check_settings(t_sim *settings)
 		settings->number_of_coders > 200,
 		-1
 	};
-	int	index;
+	int			index;
 
 	index = 0;
 	while (args_checker[index] != -1)
@@ -65,6 +64,5 @@ int		ft_check_settings(t_sim *settings)
 			return (index);
 		index++;
 	}
-
 	return (-1);
 }

@@ -6,14 +6,12 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:46 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:40:03 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:08:13 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "codexion.h"
 #include "clock.h"
-
 
 int	register_coder_to_queue(t_sim *sim, t_coder *coder)
 {
@@ -22,7 +20,6 @@ int	register_coder_to_queue(t_sim *sim, t_coder *coder)
 		insert_into_queue_fifo(sim, coder);
 	else if (sim->scheduler == EDF)
 		insert_into_queue_edf(sim, coder, get_timestamp());
-	
 	pthread_mutex_unlock(&sim->m_queue);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:05:26 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:06:49 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 13:20:48 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef enum e_coder_state
 	REFACTOR,
 	BURNOUT
 }	t_coder_state;
-
 
 typedef enum e_action
 {

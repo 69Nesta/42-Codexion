@@ -6,19 +6,17 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:02 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:53:02 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:15:39 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-
 #include "codexion.h"
 #include "colors.h"
-#include "args.h"
 #include "logger.h"
+#include "args.h"
 
-
-int ft_check_missing(int argc)
+int	ft_check_missing(int argc)
 {
 	const char	*args[] = {
 		"number_of_coders", "time_to_burnout", "time_to_compile",
@@ -46,7 +44,7 @@ int ft_check_missing(int argc)
 	return (1);
 }
 
-int ft_check_fill(t_sim *settings, int argc, char **argv)
+int	ft_check_fill(t_sim *settings, int argc, char **argv)
 {
 	const int	error = ft_fill_settings(settings, argc, argv);
 	const char	*args[] = {
@@ -60,21 +58,17 @@ int ft_check_fill(t_sim *settings, int argc, char **argv)
 		"Invalid scheduler (must be 'fifo' or 'edf')",
 		0
 	};
+
 	if (error == 0)
 		return (0);
-
 	if (error > 0 && error < ARGS_REQUIRED)
-	{
 		printf("%sError:%s %s\n", RED, CRESET, args[error]);
-	}
 	else
-	{
 		printf("%sError:%s Invalid argument format.\n", RED, CRESET);
-	}
 	return (1);
 }
 
-int check_content(t_sim *settings)
+int	check_content(t_sim *settings)
 {
 	const int	check = ft_check_settings(settings);
 	const char	*args[] = {
@@ -95,11 +89,10 @@ int check_content(t_sim *settings)
 		printf("%sError:%s %s\n", RED, CRESET, args[check]);
 		return (1);
 	}
-
 	return (0);
 }
 
-int ft_check_args(t_sim *settings, int argc, char **argv)
+int	ft_check_args(t_sim *settings, int argc, char **argv)
 {
 	if (ft_check_missing(argc))
 		return (1);

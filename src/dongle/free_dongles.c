@@ -6,13 +6,12 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:44 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:07:52 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:09:53 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "codexion.h"
-
 
 int	free_dongles(t_sim *sim)
 {
@@ -20,7 +19,6 @@ int	free_dongles(t_sim *sim)
 
 	if (!sim->dongles)
 		return (0);
-
 	index = 0;
 	while (index < sim->number_of_coders)
 	{
@@ -29,6 +27,5 @@ int	free_dongles(t_sim *sim)
 	}
 	free(sim->dongles);
 	sim->dongles = NULL;
-
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:00 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 10:33:17 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:12:41 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int cleanup_simulation(t_sim *sim, int index)
+int	cleanup_simulation(t_sim *sim, int index)
 {
 	if (index >= 1 || index == 0)
 		pthread_mutex_destroy(&sim->m_queue);
@@ -20,18 +20,15 @@ int cleanup_simulation(t_sim *sim, int index)
 		pthread_mutex_destroy(&sim->m_log);
 	if (index >= 3 || index == 0)
 		pthread_mutex_destroy(&sim->m_state);
-
 	if (index >= 4 || index == 0)
 		pthread_cond_destroy(&sim->c_state);
 	if (index >= 5 || index == 0)
 		pthread_cond_destroy(&sim->c_dongles_availables);
-
 	if (index >= 6 || index == 0)
 		free_dongles(sim);
 	if (index >= 7 || index == 0)
 		free_coders_queue(sim);
 	if (index >= 9 || index == 0)
 		free_coders(sim);
-
 	return (0);
 }

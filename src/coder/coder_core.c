@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:13 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:47:14 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 11:24:51 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include "codexion.h"
 #include "logger.h"
 
-void	*coder_core(void* arg)
+void	*coder_core(void *arg)
 {
-	t_coder	*coder	= (t_coder *)arg;
-	t_sim	*sim	= coder->sim;
+	t_coder	*coder;
+	t_sim	*sim;
 
+	coder = (t_coder *)arg;
+	sim = coder->sim;
 	pthread_mutex_lock(&sim->m_state);
 	while (sim->state == SIM_WAITING)
 		pthread_cond_wait(&sim->c_state, &sim->m_state);
@@ -28,11 +30,8 @@ void	*coder_core(void* arg)
 		return (NULL);
 	}
 	pthread_mutex_unlock(&sim->m_state);
-
 	if (coder->id % 2 == 0)
 		usleep(1500);
-
 	start_coder_routine(sim, coder);
-
 	return (NULL);
 }

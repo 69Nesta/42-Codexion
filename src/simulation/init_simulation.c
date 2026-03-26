@@ -6,18 +6,15 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:03 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 10:45:05 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:13:24 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "codexion.h"
-
 
 int	init_simulation(t_sim *sim)
 {
 	init_simulation_variables(sim);
-
 	if (pthread_mutex_init(&sim->m_queue, NULL))
 		return (0);
 	if (pthread_mutex_init(&sim->m_log, NULL))

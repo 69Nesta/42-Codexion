@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:19:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:03:39 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:29:48 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #include "logger.h"
 #include "clock.h"
 
-
 int	monitor_routine(t_sim *sim)
 {
 	int		index;
-	long	current_time;
+	t_time	current_time;
 	t_bool	all_coders_done;
 
 	while (!sim->stop)
@@ -51,6 +50,5 @@ int	monitor_routine(t_sim *sim)
 			return (1);
 		}
 	}
-
-	return (1);	
+	return (1);
 }

@@ -6,20 +6,21 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:15 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 17:48:16 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 13:17:37 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "limits.h"
 
-
 long	ft_strtol(const char *str, char **endptr, int *error)
 {
-	long result = 0;
-	int sign = 1;
-	int new_digit = 0;
+	long	result;
+	int		sign;
+	int		new_digit;
 
+	result = 0;
+	sign = 1;
 	*error = 0;
 	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
 		str++;
@@ -39,26 +40,22 @@ long	ft_strtol(const char *str, char **endptr, int *error)
 	}
 	if (endptr)
 		*endptr = (char *)str;
-	return sign * result;
+	return (sign * result);
 }
 
-
-int		parse_int(const char *str, int *out)
+int	parse_int(const char *str, int *out)
 {
-	char *endptr;
-    int err;
+	char	*endptr;
+	int		err;
+	long	val;
 
-    long val = ft_strtol(str, &endptr, &err);
-
-    if (endptr == str)
-        return 0;
-
-    if (*endptr != '\0')
-        return 0;
-
-    if ((err != 0) || val > INT_MAX || val < INT_MIN)
-        return 0;
-
-    *out = (int)val;
-    return 1;
+	val = ft_strtol(str, &endptr, &err);
+	if (endptr == str)
+		return (0);
+	if (*endptr != '\0')
+		return (0);
+	if ((err != 0) || val > INT_MAX || val < INT_MIN)
+		return (0);
+	*out = (int) val;
+	return (1);
 }

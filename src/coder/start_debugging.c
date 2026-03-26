@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:34 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 19:01:18 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 11:16:33 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	start_debugging(t_sim *sim, t_coder *coder)
 {
 	log_action(sim, coder->id, DEBUG_ACTION);
 	usleep(sim->time_to_debug * 1000);
-	
 	if (sim->stop)
 		return (0);
 	return (1);

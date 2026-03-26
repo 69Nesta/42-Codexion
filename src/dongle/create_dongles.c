@@ -6,13 +6,12 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:39 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:07:40 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:12:02 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "codexion.h"
-
 
 int	create_dongles(t_sim *sim)
 {
@@ -21,7 +20,6 @@ int	create_dongles(t_sim *sim)
 	sim->dongles = malloc(sizeof(t_dongle) * sim->number_of_coders);
 	if (!sim->dongles)
 		return (0);
-
 	index = 0;
 	while (index < sim->number_of_coders)
 	{
@@ -29,7 +27,7 @@ int	create_dongles(t_sim *sim)
 		sim->dongles[index].taken = FALSE;
 		sim->dongles[index].last_use_time = -1;
 		if (pthread_mutex_init(&sim->dongles[index].mutex, NULL))
-			break;
+			break ;
 		index++;
 	}
 	while (index != sim->number_of_coders && index > 0)

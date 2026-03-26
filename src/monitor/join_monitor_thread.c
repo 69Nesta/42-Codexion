@@ -6,12 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:13:19 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/23 18:16:58 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 12:27:14 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-
 
 int	join_monitor_thread(t_sim *sim)
 {
