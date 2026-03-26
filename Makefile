@@ -123,7 +123,7 @@ DEPS      = $(M_FILE:%.c=$(OBJ_DIR)%.d)
 
 # NORMINETTE (use same paths as norm target)
 # NORM_RET = $(RED)[ERROR]$(BOLD) Norminette Disable$(NC)
-NORM   = $(shell norminette src/ includes/ | grep -c 'Error!')
+NORM   = $(shell norminette coders/ | grep -c 'Error!')
 ifeq ($(NORM), 0)
   NORM_RET = $(GREEN)[DONE] $(BOLD)$(YELLOW)Norminette.$(NC)
 else
@@ -178,7 +178,7 @@ re: fclean all
 debug: all
 
 norm:
-	@norminette src/ includes/
+	@norminette coders/
 
 .PHONY: all clean fclean re nothing_to_be_done norm debug
 
