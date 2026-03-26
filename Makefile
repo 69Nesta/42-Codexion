@@ -35,16 +35,16 @@ CFLAGS += $(DEBUG_FLAGS)
 
 
 # Includes
-INCLUDES = -I includes/
+INCLUDES = -I coders/includes/
 
 # Source files (grouped with correct directories)
-CODEXION_DIR             = src/
+CODEXION_DIR             = coders/src/
 
 # Mandatory sources (in src/)
 CODEXION_MANDATORY			= codexion.c
 
 # Coders (in src/coder/)
-CODEXION_CODER_DIR			= src/coder/
+CODEXION_CODER_DIR			= coders/src/coder/
 CODEXION_CODER				= create_coders.c \
 							free_coders.c \
 							create_coders_queue.c \
@@ -61,7 +61,7 @@ CODEXION_CODER				= create_coders.c \
 							time_left_to_burnout.c
 
 # Dongles (in src/dongle/)
-CODEXION_DONGLE_DIR			= src/dongle/
+CODEXION_DONGLE_DIR			= coders/src/dongle/
 CODEXION_DONGLE				= create_dongles.c \
 							free_dongles.c \
 							take_dongles.c \
@@ -76,7 +76,7 @@ CODEXION_DONGLE				= create_dongles.c \
 							wait_dongles_cooldown.c
 
 # Simulation (in src/simulation/)
-CODEXION_SIMULATION_DIR		= src/simulation/
+CODEXION_SIMULATION_DIR		= coders/src/simulation/
 CODEXION_SIMULATION			= set_sim_state.c \
 							init_simulation_variables.c \
 							init_simulation.c \
@@ -84,7 +84,7 @@ CODEXION_SIMULATION			= set_sim_state.c \
 							cleanup_simulation.c
 
 # Simulation (in src/monitor/)
-CODEXION_MONITOR_DIR		= src/monitor/
+CODEXION_MONITOR_DIR		= coders/src/monitor/
 CODEXION_MONITOR			= create_monitor_thread.c \
 							join_monitor_thread.c \
 							monitor_core.c \
@@ -92,13 +92,13 @@ CODEXION_MONITOR			= create_monitor_thread.c \
 							monitor_routine.c
 
 # Utils sources (in src/utils/)
-CODEXION_UTILS_DIR			= src/utils/
+CODEXION_UTILS_DIR			= coders/src/utils/
 CODEXION_UTILS				= clock.c \
 							logger.c \
 							parse_int.c
 
 # Parsing Args (in src/args/)
-CODEXION_ARGS_DIR			= src/args/
+CODEXION_ARGS_DIR			= coders/src/args/
 CODEXION_ARGS				= parse_args.c \
 							check_args.c
 
