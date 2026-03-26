@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 14:27:14 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 16:27:02 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 18:56:42 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	check_coders(t_sim *sim, t_time current_time, t_bool *all_coders_done)
 		if (coder_has_burnout(sim, &sim->coders[index], current_time))
 		{
 			pthread_mutex_lock(&sim->m_state);
-			pthread_mutex_lock(&sim->m_queue);
 			sim->state = SIM_FAIL;
 			sim->stop = TRUE;
-			log_action(sim, index, BURNOUT_ACTION);
 			pthread_cond_broadcast(&sim->c_state);
+			pthread_mutex_unlock(&sim->m_state);
+			pthread_mutex_lock(&sim->m_queue);
 			pthread_cond_broadcast(&sim->c_dongles_availables);
 			pthread_mutex_unlock(&sim->m_queue);
-			pthread_mutex_unlock(&sim->m_state);
+			log_action(sim, index, BURNOUT_ACTION);
 			return (0);
 		}
 		index++;

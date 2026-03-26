@@ -81,6 +81,7 @@ CODEXION_SIMULATION			= set_sim_state.c \
 							init_simulation_variables.c \
 							init_simulation.c \
 							run_simulation.c \
+							is_running.c \
 							cleanup_simulation.c
 
 # Simulation (in src/monitor/)

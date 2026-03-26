@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:13 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 16:17:55 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 19:15:28 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	*coder_core(void *arg)
 	pthread_mutex_unlock(&sim->m_state);
 	if (coder->id % 2 == 0)
 		usleep(1500);
+	pthread_mutex_lock(&sim->m_log);
+	pthread_mutex_unlock(&sim->m_log);
 	start_coder_routine(sim, coder);
 	return (NULL);
 }

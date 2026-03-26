@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:46:39 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 11:29:27 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 17:17:20 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_time	time_left_to_burnout(t_sim *sim, t_coder *coder, t_time current_time)
 {
 	t_time	time_since_last_compile;
 
+	pthread_mutex_lock(&coder->mutex);
 	time_since_last_compile = current_time - coder->last_compile_time;
+	pthread_mutex_unlock(&coder->mutex);
 	return (sim->time_to_burnout - time_since_last_compile);
 }

@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:21 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 11:21:36 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 17:24:28 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,13 @@ int	create_coders(t_sim *sim)
 		sim->coders[index].right_dongle = NULL;
 		sim->coders[index].left_dongle = NULL;
 		sim->coders[index].sim = sim;
+		if (pthread_mutex_init(&sim->coders[index].mutex, NULL) != 0)
+			break ;
 		index++;
 	}
-	return (1);
+	while (index < sim->number_of_coders && index >= 0)
+		pthread_mutex_destroy(&sim->coders[index--].mutex);
+	if (index < sim->number_of_coders)
+		free(sim->coders);
+	return (index == sim->number_of_coders);
 }

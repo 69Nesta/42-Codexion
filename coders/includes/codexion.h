@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:05:28 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 14:30:13 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 18:38:55 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_coder
 	t_dongle		*left_dongle;
 	t_sim			*sim;
 	pthread_t		thread;
+	pthread_mutex_t	mutex;
 }	t_coder;
 
 int		create_coders(t_sim *sim);
@@ -105,6 +106,7 @@ int		init_simulation_variables(t_sim *sim);
 int		init_simulation(t_sim *sim);
 int		run_simulation(t_sim *sim);
 int		cleanup_simulation(t_sim *sim, int index);
+int		is_running(t_sim *sim);
 
 int		start_compiling(t_sim *sim, t_coder *coder);
 int		start_debugging(t_sim *sim, t_coder *coder);

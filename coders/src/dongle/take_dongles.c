@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 14:21:34 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 14:24:48 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 18:54:31 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	take_dongles(t_sim *sim, t_coder *coder)
 
 	index = 0;
 	taken = 0;
-	while (index < sim->number_of_coders && taken < 2 && !sim->stop)
+	while (index < sim->number_of_coders && taken < 2 && is_running(sim))
 	{
 		pthread_mutex_lock(&sim->dongles[index].mutex);
 		if (dongle_can_be_used(&sim->dongles[index]))

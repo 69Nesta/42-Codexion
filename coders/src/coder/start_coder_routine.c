@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:30 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 16:18:20 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 19:00:38 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	start_coder_routine(t_sim *sim, t_coder *coder)
 {
 	while (coder->compiles_done < sim->number_of_compiles_required
-		&& !sim->stop)
+		&& is_running(sim))
 	{
 		register_coder_to_queue(sim, coder);
 		if (!wait_for_dongles(sim, coder))

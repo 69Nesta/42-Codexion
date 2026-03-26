@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_compiling.c                                  :+:      :+:    :+:   */
+/*   is_running.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 17:47:31 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 19:00:47 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/26 18:34:05 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/26 18:38:57 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "codexion.h"
-#include "logger.h"
-#include "clock.h"
 
-int	start_compiling(t_sim *sim, t_coder *coder)
+int	is_running(t_sim *sim)
 {
-	log_action(sim, coder->id, COMPILE_ACTION);
-	usleep(sim->time_to_compile * 1000);
-	pthread_mutex_lock(&coder->mutex);
-	coder->compiles_done++;
-	coder->last_compile_time = get_timestamp();
-	pthread_mutex_unlock(&coder->mutex);
-	release_dongles(sim, coder);
-	if (!is_running(sim))
+	pthread_mutex_lock(&sim->m_state);
+	if (sim->stop)
+	{
+		pthread_mutex_unlock(&sim->m_state);
 		return (0);
+	}
+	pthread_mutex_unlock(&sim->m_state);
 	return (1);
 }
