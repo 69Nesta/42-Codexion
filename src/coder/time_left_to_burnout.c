@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.h                                             :+:      :+:    :+:   */
+/*   time_left_to_burnout.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/24 14:05:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:05:24 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/24 11:46:39 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 13:12:42 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_H
-# define ARGS_H
+#include "codexion.h"
 
-# include "codexion.h"
-# define ARGS_REQUIRED	8
 
-int	ft_fill_settings(t_sim *settings, int argc, char **argv);
-int	ft_check_settings(t_sim *settings);
-int ft_check_args(t_sim *settings, int argc, char **argv);
-
-#endif
+long	time_left_to_burnout(t_sim *sim, t_coder *coder, long current_time)
+{
+	long time_since_last_compile = current_time - coder->last_compile_time;
+	return (sim->time_to_burnout - time_since_last_compile);
+}

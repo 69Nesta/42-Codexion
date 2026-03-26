@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.h                                             :+:      :+:    :+:   */
+/*   monitor_core.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/24 14:05:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:05:24 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/23 18:12:59 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/23 18:59:06 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_H
-# define ARGS_H
+#include "codexion.h"
 
-# include "codexion.h"
-# define ARGS_REQUIRED	8
 
-int	ft_fill_settings(t_sim *settings, int argc, char **argv);
-int	ft_check_settings(t_sim *settings);
-int ft_check_args(t_sim *settings, int argc, char **argv);
+void	*monitor_core(void *arg)
+{
+	t_sim	*sim;
 
-#endif
+	sim = (t_sim *)arg;
+	pthread_mutex_lock(&sim->m_state);
+	while (sim->state == SIM_WAITING)
+		pthread_cond_wait(&sim->c_state, &sim->m_state);
+	pthread_mutex_unlock(&sim->m_state);
+	if (sim->state == SIM_FAIL)
+		return (NULL);
+	
+	monitor_routine(sim);
+	
+	return (NULL);
+}

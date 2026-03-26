@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.h                                             :+:      :+:    :+:   */
+/*   release_dongle.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/24 14:05:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:05:24 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/23 17:47:48 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 11:17:26 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_H
-# define ARGS_H
+#include "codexion.h"
+#include "clock.h"
 
-# include "codexion.h"
-# define ARGS_REQUIRED	8
 
-int	ft_fill_settings(t_sim *settings, int argc, char **argv);
-int	ft_check_settings(t_sim *settings);
-int ft_check_args(t_sim *settings, int argc, char **argv);
-
-#endif
+int	release_dongle(t_dongle *dongle)
+{
+	pthread_mutex_lock(&dongle->mutex);
+	dongle->taken = FALSE;
+	dongle->last_use_time = get_timestamp();
+	pthread_mutex_unlock(&dongle->mutex);
+	return (1);
+}

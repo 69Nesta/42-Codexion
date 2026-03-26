@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.h                                             :+:      :+:    :+:   */
+/*   insert_into_queue_fifo.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/24 14:05:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:05:24 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/24 14:36:18 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 16:19:41 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_H
-# define ARGS_H
+#include "codexion.h"
 
-# include "codexion.h"
-# define ARGS_REQUIRED	8
 
-int	ft_fill_settings(t_sim *settings, int argc, char **argv);
-int	ft_check_settings(t_sim *settings);
-int ft_check_args(t_sim *settings, int argc, char **argv);
+int	insert_into_queue_fifo(t_sim *sim, t_coder *coder)
+{
+	int		index;
+	
+	index = 0;
+	while (sim->queue[index] != NULL && index < sim->number_of_coders)
+		index++;
+	sim->queue[index] = coder;
 
-#endif
+	return (1);
+}

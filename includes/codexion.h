@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   codexion.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/24 14:05:28 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 14:39:18 by rpetit           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CODEXION_H
 # define CODEXION_H
 
 # include "utils.h"
 # include "coder.h"
-# include "dongle.h"
 
 typedef enum e_algorithm
 {
@@ -38,17 +49,22 @@ typedef struct s_sim
 	t_coder			**queue;
 	pthread_mutex_t	m_queue;
 	pthread_mutex_t	m_log;
+	
+	int				dongles_availables;
+	pthread_cond_t	c_dongles_availables;
 
 	t_sim_state		state;
 	pthread_mutex_t	m_state;
 	pthread_cond_t	c_state;
+
+	pthread_t		monitor_thread;
 }	t_sim;
 
 typedef struct s_dongle
 {
 	int				id;
 	t_bool			taken;
-	int				last_use_time;
+	long			last_use_time;
 	t_sim			*sim;
 	pthread_mutex_t	mutex;
 }	t_dongle;
@@ -59,10 +75,10 @@ typedef struct s_coder
 	int				id;
 	t_coder_state	state;
 	int				compiles_done;
-	int				last_compile_time;
-	int				last_state_time;
-	int				right_dongle;
-	int				left_dongle;
+	long			last_compile_time;
+	// int				last_state_time;
+	t_dongle		*right_dongle;
+	t_dongle		*left_dongle;
 	t_sim			*sim;
 	pthread_t		thread;
 }	t_coder;
@@ -80,12 +96,36 @@ int		free_coders_queue(t_sim *sim);
 int		create_coders_thread(t_sim *sim);
 int		join_coders_thread(t_sim *sim);
 
-void	*coder_routine(void* arg);
+void	*coder_core(void* arg);
+int		start_coder_routine(t_sim *sim, t_coder *coder);
+int 	coder_has_burnout(t_sim *sim, t_coder *coder, long current_time);
+int		coder_has_finish_compiles(t_sim *sim, t_coder *coder);
+long	time_left_to_burnout(t_sim *sim, t_coder *coder, long current_time);
 
 int		set_sim_state(t_sim *sim, t_sim_state state);
+int		init_simulation_variables(t_sim *sim);
 int		init_simulation(t_sim *sim);
 int 	run_simulation(t_sim *sim);
 int 	cleanup_simulation(t_sim *sim, int index);
 
+int		start_compiling(t_sim *sim, t_coder *coder);
+int		start_debugging(t_sim *sim, t_coder *coder);
+int		start_refactoring(t_sim *sim, t_coder *coder);
+
+int		wait_for_dongles(t_sim *sim, t_coder *coder);
+int		wait_dongles_cooldown(t_sim *sim, t_coder *coder);
+int		release_dongle(t_dongle *dongle);
+int		release_dongles(t_sim *sim, t_coder *coder);
+int		dongle_can_be_used(t_sim *sim, t_dongle *dongle);
+
+int		create_monitor_thread(t_sim *sim);
+void	*monitor_core(void *arg);
+int		monitor_routine(t_sim *sim);
+int		join_monitor_thread(t_sim *sim);
+
+int		insert_into_queue_fifo(t_sim *sim, t_coder *coder);
+int		insert_into_queue_edf(t_sim *sim, t_coder *coder, long current_time);
+int		register_coder_to_queue(t_sim *sim, t_coder *coder);
+int		remove_coder_from_queue(t_sim *sim, t_coder *coder);
 
 #endif

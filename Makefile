@@ -51,24 +51,47 @@ CODEXION_CODER				= create_coders.c \
 							free_coders_queue.c \
 							create_coders_thread.c \
 							join_coders_thread.c \
-							coder_routine.c
+							coder_core.c \
+							start_coder_routine.c \
+							start_compiling.c \
+							start_debugging.c \
+							start_refactoring.c \
+							coder_has_burnout.c \
+							coder_has_finish_compiles.c \
+							time_left_to_burnout.c
 
 # Dongles (in src/dongle/)
 CODEXION_DONGLE_DIR			= src/dongle/
 CODEXION_DONGLE				= create_dongles.c \
-							free_dongles.c
+							free_dongles.c \
+							wait_for_dongles.c \
+							dongle_can_be_used.c \
+							release_dongle.c \
+							release_dongles.c \
+							insert_into_queue_edf.c \
+							insert_into_queue_fifo.c \
+							register_to_dongle_queue.c \
+							remove_coder_from_queue.c \
+							wait_dongles_cooldown.c
 
 # Simulation (in src/simulation/)
 CODEXION_SIMULATION_DIR		= src/simulation/
 CODEXION_SIMULATION			= set_sim_state.c \
+							init_simulation_variables.c \
 							init_simulation.c \
 							run_simulation.c \
-							cleanup_simulation.c \
+							cleanup_simulation.c
 
+# Simulation (in src/monitor/)
+CODEXION_MONITOR_DIR		= src/monitor/
+CODEXION_MONITOR			= create_monitor_thread.c \
+							join_monitor_thread.c \
+							monitor_core.c \
+							monitor_routine.c
 
 # Utils sources (in src/utils/)
 CODEXION_UTILS_DIR			= src/utils/
-CODEXION_UTILS				= time.c \
+CODEXION_UTILS				= clock.c \
 							logger.c \
 							parse_int.c
 
@@ -84,7 +107,8 @@ CODEXION_FILE	= $(addprefix $(CODEXION_DIR), $(CODEXION_MANDATORY)) \
 					$(addprefix $(CODEXION_ARGS_DIR), $(CODEXION_ARGS)) \
 					$(addprefix $(CODEXION_CODER_DIR), $(CODEXION_CODER)) \
 					$(addprefix $(CODEXION_DONGLE_DIR), $(CODEXION_DONGLE)) \
-					$(addprefix $(CODEXION_SIMULATION_DIR), $(CODEXION_SIMULATION))
+					$(addprefix $(CODEXION_SIMULATION_DIR), $(CODEXION_SIMULATION)) \
+					$(addprefix $(CODEXION_MONITOR_DIR), $(CODEXION_MONITOR))
 
 
 M_FILE  = $(CODEXION_FILE)

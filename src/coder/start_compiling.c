@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args.h                                             :+:      :+:    :+:   */
+/*   start_compiling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/24 14:05:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 14:05:24 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/23 17:47:31 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 11:17:26 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARGS_H
-# define ARGS_H
+#include <unistd.h>
+#include "codexion.h"
+#include "logger.h"
+#include "clock.h"
 
-# include "codexion.h"
-# define ARGS_REQUIRED	8
 
-int	ft_fill_settings(t_sim *settings, int argc, char **argv);
-int	ft_check_settings(t_sim *settings);
-int ft_check_args(t_sim *settings, int argc, char **argv);
-
-#endif
+int	start_compiling(t_sim *sim, t_coder *coder)
+{
+	log_action(sim, coder->id, COMPILE_ACTION);
+	usleep(sim->time_to_compile * 1000);
+	coder->compiles_done++;
+	coder->last_compile_time = get_timestamp();
+	release_dongles(sim, coder);
+	if (sim->stop)
+		return (0);
+	return (1);
+}

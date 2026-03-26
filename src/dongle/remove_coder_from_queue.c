@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_coders_thread.c                             :+:      :+:    :+:   */
+/*   remove_coder_from_queue.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 17:47:19 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/24 10:38:11 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/23 17:47:53 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/24 16:18:09 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include "coder.h"
-
 #include <stdio.h>
 
-int	create_coders_thread(t_sim *sim)
-{
-	int	index;
 
-	index = 0;
+int remove_coder_from_queue(t_sim *sim, t_coder *coder)
+{
+    int index;
+    int found;
+
+    index = 0;
+    found = 0;
+
 	while (index < sim->number_of_coders)
 	{
-		if (pthread_create(&(sim->coders[index].thread), NULL, &coder_core,
-				&(sim->coders[index])))
-			break;
+		if (sim->queue[index] == coder)
+			found = 1;
+		if (found && index + 1 < sim->number_of_coders)
+			sim->queue[index] = sim->queue[index + 1];
 		index++;
 	}
-	if (index != sim->number_of_coders)
-	{
-		set_sim_state(sim, SIM_FAIL);
-		while (index >= 0)
-		{
-			pthread_join(sim->coders[index].thread, NULL);
-			index--;
-		}
-		return (0);
-	}
-	return (1);
+	if (found)
+		sim->queue[index - 1] = NULL;
+
+    return (found);
 }
