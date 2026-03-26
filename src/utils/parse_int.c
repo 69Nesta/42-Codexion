@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:15 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 13:17:37 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 14:37:12 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long	ft_strtol(const char *str, char **endptr, int *error)
 			sign = -1;
 		str++;
 	}
-	while ((*str >= '0' && *str <= '9'))
+	while (*str && (*str >= '0' && *str <= '9'))
 	{
 		new_digit = (*str - '0');
 		if (result * 10 + new_digit < result)
@@ -38,8 +38,7 @@ long	ft_strtol(const char *str, char **endptr, int *error)
 		result = result * 10 + new_digit;
 		str++;
 	}
-	if (endptr)
-		*endptr = (char *)str;
+	*endptr = (char *)str;
 	return (sign * result);
 }
 
@@ -56,6 +55,6 @@ int	parse_int(const char *str, int *out)
 		return (0);
 	if ((err != 0) || val > INT_MAX || val < INT_MIN)
 		return (0);
-	*out = (int) val;
+	*out = (int)val;
 	return (1);
 }

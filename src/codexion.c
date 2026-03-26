@@ -6,15 +6,12 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:24 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 13:15:32 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 14:20:12 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "codexion.h"
 #include "args.h"
-#include "clock.h"
 #include "logger.h"
 
 int	main(int argc, char **argv)

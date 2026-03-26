@@ -64,6 +64,7 @@ CODEXION_CODER				= create_coders.c \
 CODEXION_DONGLE_DIR			= src/dongle/
 CODEXION_DONGLE				= create_dongles.c \
 							free_dongles.c \
+							take_dongles.c \
 							wait_for_dongles.c \
 							dongle_can_be_used.c \
 							release_dongle.c \
@@ -87,6 +88,7 @@ CODEXION_MONITOR_DIR		= src/monitor/
 CODEXION_MONITOR			= create_monitor_thread.c \
 							join_monitor_thread.c \
 							monitor_core.c \
+							check_coders.c \
 							monitor_routine.c
 
 # Utils sources (in src/utils/)
@@ -176,7 +178,7 @@ re: fclean all
 debug: all
 
 norm:
-	@norminette src/
+	@norminette src/ includes/
 
 .PHONY: all clean fclean re nothing_to_be_done norm debug
 

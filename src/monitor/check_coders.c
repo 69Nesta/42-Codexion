@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_routine.c                                  :+:      :+:    :+:   */
+/*   check_coders.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 18:19:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 14:31:40 by rpetit           ###   ########.fr       */
+/*   Created: 2026/03/26 14:27:14 by rpetit            #+#    #+#             */
+/*   Updated: 2026/03/26 14:31:36 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include "clock.h"
+#include "logger.h"
 
-int	monitor_routine(t_sim *sim)
+int	check_coders(t_sim *sim, t_time current_time, t_bool *all_coders_done)
 {
-	t_bool	all_coders_done;
+	int		index;
 
-	while (!sim->stop)
+	index = 0;
+	*all_coders_done = TRUE;
+	while (index < sim->number_of_coders)
 	{
-		if (!check_coders(sim, get_timestamp(), &all_coders_done))
-			return (0);
-		if (all_coders_done)
+		if (!coder_has_finish_compiles(sim, &sim->coders[index]))
+			*all_coders_done = FALSE;
+		if (coder_has_burnout(sim, &sim->coders[index], current_time))
 		{
 			pthread_mutex_lock(&sim->m_state);
+			sim->state = SIM_FAIL;
 			sim->stop = TRUE;
+			log_action(sim, index, BURNOUT_ACTION);
 			pthread_cond_broadcast(&sim->c_state);
 			pthread_mutex_unlock(&sim->m_state);
-			return (1);
+			return (0);
 		}
+		index++;
 	}
 	return (1);
 }

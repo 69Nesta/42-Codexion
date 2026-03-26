@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:05:28 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 13:21:03 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 14:30:13 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int		start_compiling(t_sim *sim, t_coder *coder);
 int		start_debugging(t_sim *sim, t_coder *coder);
 int		start_refactoring(t_sim *sim, t_coder *coder);
 
+int		take_dongles(t_sim *sim, t_coder *coder);
 int		wait_for_dongles(t_sim *sim, t_coder *coder);
 int		wait_dongles_cooldown(t_sim *sim, t_coder *coder);
 int		release_dongle(t_dongle *dongle);
@@ -119,6 +120,7 @@ int		dongle_can_be_used(t_dongle *dongle);
 int		create_monitor_thread(t_sim *sim);
 void	*monitor_core(void *arg);
 int		monitor_routine(t_sim *sim);
+int		check_coders(t_sim *sim, t_time current_time, t_bool *all_coders_done);
 int		join_monitor_thread(t_sim *sim);
 
 int		insert_into_queue_fifo(t_sim *sim, t_coder *coder);
