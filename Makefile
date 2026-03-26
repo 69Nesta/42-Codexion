@@ -38,7 +38,7 @@ CFLAGS += $(DEBUG_FLAGS)
 INCLUDES = -I coders/includes/
 
 # Source files (grouped with correct directories)
-CODEXION_DIR             = coders/src/
+CODEXION_DIR             = coders/
 
 # Mandatory sources (in src/)
 CODEXION_MANDATORY			= codexion.c

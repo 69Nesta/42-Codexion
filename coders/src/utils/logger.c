@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:12 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 12:22:39 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/26 16:09:25 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	log_action(t_sim *sim, int coder_id, t_action action)
 		pthread_mutex_unlock(&sim->m_log);
 		return (0);
 	}
-	printf("%lld %d %s\n", get_timestamp(), coder_id, action_str[action]);
+	printf("%lld %d %s\n", get_timestamp(), coder_id + 1, action_str[action]);
 	pthread_mutex_unlock(&sim->m_log);
 	return (1);
 }
