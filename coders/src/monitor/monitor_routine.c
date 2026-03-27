@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:19:23 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/27 13:23:30 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/27 13:43:39 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	monitor_routine(t_sim *sim)
 			pthread_mutex_unlock(&sim->m_queue);
 			return (1);
 		}
+		usleep(500);
 	}
 	return (1);
 }
