@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:00 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 19:52:30 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/27 18:29:49 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	cleanup_simulation(t_sim *sim, int index)
 {
+	if (index >= 9)
+	{
+		set_sim_state(sim, SIM_FAIL);
+		join_monitor_thread(sim);
+	}
 	if (index >= 1 || index == 0)
 		pthread_mutex_destroy(&sim->m_queue);
 	if (index >= 2 || index == 0)
@@ -30,10 +35,6 @@ int	cleanup_simulation(t_sim *sim, int index)
 		free_coders_queue(sim);
 	if (index >= 8 || index == 0)
 		free_coders(sim);
-	if (index >= 9 || index == 0)
-	{
-		set_sim_state(sim, SIM_FAIL);
-		join_monitor_thread(sim);
-	}
+	
 	return (0);
 }
