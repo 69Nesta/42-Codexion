@@ -29,9 +29,9 @@ DEBUG_FLAGS = -g3
 
 BONUS_CFLAGS := $(CFLAGS) -DPRINT_OPERATION=0
 
-# ifeq ($(MAKECMDGOALS), debug)
-CFLAGS += $(DEBUG_FLAGS)
-# endif
+ifeq ($(MAKECMDGOALS), debug)
+	CFLAGS += $(DEBUG_FLAGS)
+endif
 
 
 # Includes
