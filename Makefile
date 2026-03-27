@@ -24,7 +24,7 @@ ERASE2   = $(ERASE)\033[F$(ERASE)
 CC       = cc
 
 DEPFLAGS = -MMD -MP
-CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror -pthread
+CFLAGS   = $(DEPFLAGS) -Wall -Wextra -Werror -pthread -std=c89
 DEBUG_FLAGS = -g3
 
 BONUS_CFLAGS := $(CFLAGS) -DPRINT_OPERATION=0
@@ -138,12 +138,12 @@ $(OBJ_DIR)%.o : %.c
 	@if [ $(COMPILED_FILES) -eq 0 ]; then \
 		echo "\n$(YELLOW)╔══════════════════════════════════════════════╗$(NC)";                          \
 		echo "$(YELLOW)║       Starting $(YELLOW2)$(NAME)$(YELLOW) compilation...       ║$(NC)";           \
-		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)";                        \
+		echo "$(YELLOW)╚══════════════════════════════════════════════╝$(NC)\n";                        \
 	fi
 	@$(eval COMPILED_FILES := 1)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
-	@printf "\n$(GREEN)[Compiling] $(NC)$(shell echo $< | sed 's|^src/||')";
+	@printf "$(GREEN)[Compiling] $(NC)$(shell echo $< | sed 's|^src/||')\n";
 
 all: $(NAME) nothing_to_be_done
 

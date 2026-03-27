@@ -6,12 +6,16 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:05:20 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 13:20:39 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/27 12:54:26 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLOCK_H
 # define CLOCK_H
+
+# define _DEFAULT_SOURCE
+# define _XOPEN_SOURCE 500
+# include <unistd.h>
 
 typedef long long	t_time;
 

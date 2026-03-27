@@ -6,13 +6,13 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:13 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 19:15:28 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/27 12:54:51 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "codexion.h"
 #include "logger.h"
+#include "clock.h"
 
 void	*coder_core(void *arg)
 {

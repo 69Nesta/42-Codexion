@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:12 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 19:01:07 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/27 12:46:02 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int	error(char *str)
 {
-	return (printf("%sERROR:%s %s", RED, CRESET, str));
+	return (fprintf(stderr, "%sERROR:%s %s", RED, CRESET, str));
 }
 
 int	log_action(t_sim *sim, int coder_id, t_action action)

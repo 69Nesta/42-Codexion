@@ -6,25 +6,22 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:05:28 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 18:38:55 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/27 13:23:11 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CODEXION_H
 # define CODEXION_H
 
+# include "clock.h"
 # include "utils.h"
 # include "coder.h"
-# include "clock.h"
 
 typedef enum e_algorithm
 {
 	FIFO,
 	EDF
 }	t_algorithm;
-
-typedef struct s_coder	t_coder;
-typedef struct s_dongle	t_dongle;
 
 typedef enum s_sim_state
 {
@@ -45,9 +42,9 @@ typedef struct s_sim
 	t_algorithm		scheduler;
 
 	t_bool			stop;
-	t_coder			*coders;
-	t_dongle		*dongles;
-	t_coder			**queue;
+	struct s_coder	*coders;
+	struct s_dongle	*dongles;
+	struct s_coder	**queue;
 	pthread_mutex_t	m_queue;
 	pthread_mutex_t	m_log;
 
