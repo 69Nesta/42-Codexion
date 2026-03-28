@@ -113,13 +113,7 @@ The program outputs timestamped log entries for each action:
 
 AI was utilized during the project development for:
 
-1. **Learning pthread functions**: Understanding the complete pthread API, including advanced features like condition variable broadcasting and mutex-protected queues
-2. **Algorithm implementation**: Designing and validating the EDF scheduling algorithm to prevent starvation and fairly allocate resources
-3. **Debugging concurrent issues**: Assistance in identifying race conditions and deadlock scenarios
-4. **Code structure organization**: Organizing the modular codebase with clear separation between coder, dongle, monitor, and simulation concerns
-5. **Testing edge cases**: Validating correctness for various parameter combinations and edge cases
-
-AI supported code generation and architecture decisions but all implementations were verified and tested within the 42 curriculum constraints.
+> **Learning pthread functions**: Understanding the complete pthread API, including advanced features like condition variable broadcasting and mutex-protected queues
 
 ## Blocking Cases Handled
 
