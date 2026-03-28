@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:31 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/28 15:21:35 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 16:13:36 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	start_compiling(t_sim *sim, t_coder *coder)
 {
 	log_action(sim, coder->id, COMPILE_ACTION);
-	usleep(sim->time_to_compile * 1000);
+	wait(sim, sim->time_to_compile * 1000);
 	pthread_mutex_lock(&coder->mutex);
 	coder->compiles_done++;
 	coder->last_compile_time = get_timestamp();

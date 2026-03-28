@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:05:28 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/28 15:21:20 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 16:38:17 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,7 @@ int		insert_into_queue_fifo(t_sim *sim, t_coder *coder);
 int		insert_into_queue_edf(t_sim *sim, t_coder *coder, t_time current_time);
 int		register_coder_to_queue(t_sim *sim, t_coder *coder);
 int		remove_coder_from_queue(t_sim *sim, t_coder *coder);
+
+int		wait(t_sim *sim, t_time usec);
 
 #endif

@@ -94,7 +94,8 @@ CODEXION_MONITOR			= create_monitor_thread.c \
 CODEXION_UTILS_DIR			= src/utils/
 CODEXION_UTILS				= clock.c \
 							logger.c \
-							parse_int.c
+							parse_int.c \
+							wait.c
 
 # Parsing Args (in src/args/)
 CODEXION_ARGS_DIR			= src/args/
