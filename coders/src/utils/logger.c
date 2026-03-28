@@ -6,15 +6,13 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:12 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/27 12:46:02 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:19:59 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "codexion.h"
 #include "colors.h"
-#include "coder.h"
-#include "clock.h"
+#include <stdio.h>
 
 int	error(char *str)
 {

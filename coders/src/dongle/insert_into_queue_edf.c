@@ -6,12 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:36:18 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 12:09:30 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:18:51 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include "clock.h"
 
 int	insert_into_queue_edf(t_sim *sim, t_coder *coder, t_time time)
 {

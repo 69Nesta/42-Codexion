@@ -6,12 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:41 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 12:11:40 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:18:47 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include "clock.h"
 
 int	dongle_can_be_used(t_dongle *dongle)
 {

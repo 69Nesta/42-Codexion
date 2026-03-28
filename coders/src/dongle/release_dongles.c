@@ -6,13 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:50 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 12:07:10 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:19:14 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include <stdio.h>
-#include "clock.h"
 
 int	release_dongles(t_sim *sim, t_coder *coder)
 {

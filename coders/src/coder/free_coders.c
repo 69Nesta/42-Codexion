@@ -6,13 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:25 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 17:03:45 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:18:30 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "codexion.h"
-#include "coder.h"
 
 int	free_coders(t_sim *sim)
 {

@@ -6,11 +6,10 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:39 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 12:12:02 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:18:46 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "codexion.h"
 
 int	create_dongles(t_sim *sim)

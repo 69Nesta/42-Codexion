@@ -6,12 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:46:39 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 17:17:20 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:21:59 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include "clock.h"
 
 t_time	time_left_to_burnout(t_sim *sim, t_coder *coder, t_time current_time)
 {

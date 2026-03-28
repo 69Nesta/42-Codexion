@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 14:05:28 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/27 13:23:11 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:21:20 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CODEXION_H
 
 # include "clock.h"
+# include <stdlib.h>
 # include "utils.h"
 # include "coder.h"
 

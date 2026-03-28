@@ -6,12 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 18:30:22 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 12:01:49 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:18:21 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-#include "clock.h"
 
 int	coder_has_burnout(t_sim *sim, t_coder *coder, t_time current_time)
 {

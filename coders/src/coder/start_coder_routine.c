@@ -6,13 +6,11 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:47:30 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/26 19:00:38 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 15:18:34 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "codexion.h"
-#include "clock.h"
 
 int	start_coder_routine(t_sim *sim, t_coder *coder)
 {
