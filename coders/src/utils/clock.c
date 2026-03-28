@@ -6,7 +6,7 @@
 /*   By: rpetit <rpetit@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 17:48:17 by rpetit            #+#    #+#             */
-/*   Updated: 2026/03/28 16:27:24 by rpetit           ###   ########.fr       */
+/*   Updated: 2026/03/28 16:46:42 by rpetit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ t_time	get_timestamp(void)
 
 t_time	get_time_us(void)
 {
-	struct timespec ts;
+	struct timespec	ts;
+
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return (ts.tv_sec * 1000000L + ts.tv_nsec / 1000);
 }
